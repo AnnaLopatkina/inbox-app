@@ -75,3 +75,35 @@ os.arch=x86_64
 os.version=10.14.3
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Wed Feb 26 16:33:52 CET 2020:
+Shutting down instance 02dcc29e-0170-81f8-14c6-000007360dd0 on database directory memory:/Users/michealmboni/Documents/Java-Entwicklung/java-EE/Inbox-chat-app/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@55054057 
+----------------------------------------------------------------
+Wed Feb 26 16:33:53 CET 2020:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance db384342-0170-81f8-14c6-000007360dd0 
+on database directory memory:/Users/michealmboni/Documents/Java-Entwicklung/java-EE/Inbox-chat-app/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@55054057 
+Loaded from file:/Users/michealmboni/Documents/Java-Entwicklung/ressources/maven/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=12.0.1+12
+user.dir=/Users/michealmboni/Documents/Java-Entwicklung/java-EE/Inbox-chat-app
+os.name=Mac OS X
+os.arch=x86_64
+os.version=10.14.3
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Wed Feb 26 16:55:58 CET 2020:
+Shutting down instance db384342-0170-81f8-14c6-000007360dd0 on database directory memory:/Users/michealmboni/Documents/Java-Entwicklung/java-EE/Inbox-chat-app/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@55054057 
+----------------------------------------------------------------
+Wed Feb 26 16:55:59 CET 2020:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance cdd7c3e6-0170-81f8-14c6-000007360dd0 
+on database directory memory:/Users/michealmboni/Documents/Java-Entwicklung/java-EE/Inbox-chat-app/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@55054057 
+Loaded from file:/Users/michealmboni/Documents/Java-Entwicklung/ressources/maven/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=12.0.1+12
+user.dir=/Users/michealmboni/Documents/Java-Entwicklung/java-EE/Inbox-chat-app
+os.name=Mac OS X
+os.arch=x86_64
+os.version=10.14.3
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
