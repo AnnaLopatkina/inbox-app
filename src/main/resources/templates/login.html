@@ -3,7 +3,6 @@
    
     <head>
         <meta charset="utf-8">
-        <meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Login</title>
         
@@ -63,7 +62,7 @@
 							Not a member?
 						</span>
 
-						<a class="txt1 bo1 hov1" href="#">
+						<a th:href="@{/sign-up}" class="txt1 bo1 hov1">
 							Sign up now							
 						</a>
 					</div>
@@ -75,10 +74,10 @@
 <!--===============================================================================================-->	
 	<script th:src="@{/resources/vendor/jquery/jquery-3.2.1.min.js}" src="/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script th:src="@{/resources/vendor/jquery/jquery-3.2.1.min.js}" src="/resources/vendor/bootstrap/js/popper.js"></script>
-	<script th:src="@{/resources/vendor/jquery/jquery-3.2.1.min.js}" src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script th:src="@{/resources/vendor/bootstrap/js/popper.js}" src="/resources/vendor/bootstrap/js/popper.js"></script>
+	<script th:src="@{/resources/vendor/bootstrap/js/bootstrap.min.js}" src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script th:src="@{/resources/vendor/jquery/jquery-3.2.1.min.js}" src="/resources/vendor/select2/select2.min.js"></script>
+	<script th:src="@{/resources/vendor/select2/select2.min.js}" src="/resources/vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
 	<script th:src="@{/resources/js/login.js}" src="js/login.js"></script>
     </body>

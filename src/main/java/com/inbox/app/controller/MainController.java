@@ -10,4 +10,11 @@ public class MainController {
 	public String showIndex() {
 		return "login";
 	}
+	
+	@GetMapping("/sign-up")
+	public String showSignup() {
+		return "sign-up";
+	}
+	
+	
 }
