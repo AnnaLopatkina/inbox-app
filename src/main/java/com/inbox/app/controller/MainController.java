@@ -8,11 +8,16 @@ public class MainController {
 
 	@GetMapping("/")
 	public String showIndex() {
-		return "main-chat";
+		return "login";
 	}
 	
 	@GetMapping("/sign-up")
 	public String showSignup() {
 		return "sign-up";
+	}
+	
+	@GetMapping("/main")
+	public String showMainChat() {
+		return "main-chat";
 	}
 }
