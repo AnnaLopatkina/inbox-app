@@ -25,8 +25,8 @@ public class UserDataInitializer implements DataInitializer{
 		LOG.info("Creating default Users.");
 		
 		List.of(
-				new UserForm("boss" , "boss" , "abc" , "abc" , "boss@abc.com"),
-				new UserForm("mboni" , "michael" , "abc" , "abc" , "mbonimichael@yahoo.fr")
+				new UserForm("boss" , "boss" , "boss", "abc" , "abc" , "boss@abc.com"),
+				new UserForm("mboni" , "michael" , "boss" ,"abc" , "abc" , "mbonimichael@yahoo.fr")
 		).forEach(userManagement::addUser);
 	}
 

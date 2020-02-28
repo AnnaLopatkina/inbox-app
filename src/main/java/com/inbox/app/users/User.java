@@ -16,6 +16,7 @@ public class User {
 	private @Id @GeneratedValue long UserId ;
 	private String name;
 	private String firstname;
+	private String username ;
 	private String email;
 	private String account;
 	private ArrayList<Role> roles;
@@ -23,15 +24,24 @@ public class User {
 	@SuppressWarnings("unused")
 	private User() {}
 	
-	public User(UserAccount account , String name , String firstname , String email  ) {
+	public User(UserAccount account , String name , String firstname , String username , String email  ) {
 		this.account = account.getUsername();
 		this.accountId = account.getId();
 		this.roles = new ArrayList<>(account.getRoles().toList());
 		this.firstname = firstname ;
 		this.name = name ;
 		this.email = email ;
+		this.username = username ;
 	}
 
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 	public String getAccount() {
 		return account;
@@ -91,7 +101,8 @@ public class User {
 	
 	public String toString() {
 		String str ="";
-		str = "Name: "+this.getName() + " Firstname: "+this.getFirstname()+" Email: "+this.getEmail() ;
+		str = "Name: "+this.getName() + "--  Firstname: "+this.getFirstname()+ "-- Username: "+this.getUsername() 
+			+"-- Email: "+this.getEmail() ;
 		return str ;
 	}
 }
