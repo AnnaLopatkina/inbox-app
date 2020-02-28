@@ -64,10 +64,24 @@
 			                  </li>
 			
 			                 <li>
-			                  <a href="#">
+			                  <a th:href="@{/users}" href="#">
 			                  <i class="fa fa-users fa-lg"></i> Users
 			                  </a>
 			                </li>
+			                
+			                <li>
+			                  <a th:href="@{/logout}" href="#">
+			                  
+			                  </a>
+			                </li>
+			                
+			                <li sec:authorize="isAuthenticated()">
+	                			<form action="#" id ="logoutForm" th:action="@{/logout}" method="post">	
+	                				<a href="#" onclick="document.getElementById('logoutForm').submit()">
+	                					<i class="fa fa-sign-out fa-lg"></i> Logout
+	                				</a>			
+	                			</form>	
+							</li>
 			            </ul>
 			     </div>
 			</div>

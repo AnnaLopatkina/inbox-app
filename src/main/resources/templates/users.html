@@ -4,8 +4,30 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<title>Users list</title>
+		 <!--===============================================================================================-->	
+		<link th:href="@{/resources/images/icons/favicon.ico}" rel="icon" type="image/png" href="../static/resources/images/icons/favicon.ico"/>
+		<!--===============================================================================================-->
+		<link th:href="@{/resources/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/bootstrap/css/bootstrap.min.css">
+		<!--===============================================================================================-->
+		<link th:href="@{/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css" href="../static/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    	<!--===============================================================================================-->	
+		<link th:href="@{/resources/css/menu.css}" rel="stylesheet" type="text/css" href="../static/resources/css/menu.css">
 	</head>
 	<body>
-		<h1>USERS LIST</h1>
+	
+		
+	<div class="main">
+	    <!-- MENU -->
+			<div class="sidebar-menu" th:include="menu :: menu"></div>	
+		<!-- /MENU -->
+	    	<div class="main-app">
+				<h1>USERS LIST</h1>
+				<ul th:each="user : ${users}">
+					<li th:text="${user}">
+					</li>
+				</ul>
+			</div>
+			
+		</div>
 	</body>
 </html>
