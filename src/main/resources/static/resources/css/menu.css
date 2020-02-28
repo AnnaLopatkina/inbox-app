@@ -108,7 +108,7 @@
   -ms-transition: all 1s ease;
   transition: all 1s ease;
 }
-@media (max-width: 767px) {
+@media (max-width: 892px) {
   .nav-side-menu {
     position: relative;
     width: 100%;
@@ -133,9 +133,36 @@
     padding-left: 20px;
     line-height: 50px !important;
   }
+  
+   .main{
+      flex-direction: column;
+  }
+  
+  .sidebar-menu{
+	width:100% !important;
+  }
+  .main-app{
+	width:100% !important;
 }
-@media (min-width: 767px) {
+  
+}
+
+@media (min-width: 892px) {
   .nav-side-menu .menu-list .menu-content {
     display: block;
   }
+}
+
+.main  header{
+   margin-bottom: 40px;
+}
+.main{
+	display:flex; 
+}
+.sidebar-menu{
+	width:30%;
+}
+.main-app{
+	width:70%;
+	padding: 50px;
 }
