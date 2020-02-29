@@ -15,11 +15,17 @@
 			  
 			            <ul id="menu-content" class="menu-content collapse out">
 			                <li>
-			                  <a href="#">
+			                  <a  href="#">
 			                  <i class="fa fa-dashboard fa-lg"></i> Dashboard
 			                  </a>
 			                </li>
-			
+			                
+			                <li>
+			                  <a th:href="@{/chat}" href="#">
+			                  <i class="fa fa-commenting fa-lg"></i> Chat
+			                  </a>
+			                </li>
+			                
 			                <li  data-toggle="collapse" data-target="#products" class="collapsed active">
 			                  <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
 			                </li>
@@ -66,12 +72,6 @@
 			                 <li>
 			                  <a th:href="@{/users}" href="#">
 			                  <i class="fa fa-users fa-lg"></i> Users
-			                  </a>
-			                </li>
-			                
-			                <li>
-			                  <a th:href="@{/logout}" href="#">
-			                  
 			                  </a>
 			                </li>
 			                

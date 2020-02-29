@@ -1,4 +1,5 @@
 .nav-side-menu {
+  width: 24%;
   overflow: auto;
   font-family: verdana;
   font-size: 12px;
@@ -6,7 +7,6 @@
   background-color: #2e353d;
   position: fixed;
   top: 0px;
-  width: 300px;
   height: 100%;
   color: #e1ffff;
 }
@@ -111,7 +111,7 @@
 @media (max-width: 892px) {
   .nav-side-menu {
     position: relative;
-    width: 100%;
+    width: 100% !important;
     margin-bottom: 10px;
   }
   .nav-side-menu .toggle-btn {
@@ -160,9 +160,9 @@
 	display:flex; 
 }
 .sidebar-menu{
-	width:30%;
+	width:24%;
 }
 .main-app{
-	width:70%;
+	width:76%;
 	padding: 50px;
 }
