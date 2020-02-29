@@ -13,7 +13,7 @@ import org.salespointframework.useraccount.UserAccountIdentifier;
 @Entity
 public class User {
 	
-	private @Id @GeneratedValue long UserId ;
+	private @Id @GeneratedValue long userId ;
 	private String name;
 	private String firstname;
 	private String username ;
@@ -68,11 +68,11 @@ public class User {
 	}
 
 	public long getUserId() {
-		return UserId;
+		return userId;
 	}
 
 	public void setUserId(long userId) {
-		UserId = userId;
+		this.userId = userId;
 	}
 
 	public String getName() {

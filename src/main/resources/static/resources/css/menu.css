@@ -1,3 +1,4 @@
+
 .nav-side-menu {
   width: 24%;
   overflow: auto;
@@ -108,7 +109,7 @@
   -ms-transition: all 1s ease;
   transition: all 1s ease;
 }
-@media (max-width: 892px) {
+@media (max-width: 768px) {
   .nav-side-menu {
     position: relative;
     width: 100% !important;
@@ -147,7 +148,7 @@
   
 }
 
-@media (min-width: 892px) {
+@media (min-width: 768px) {
   .nav-side-menu .menu-list .menu-content {
     display: block;
   }
@@ -165,4 +166,7 @@
 .main-app{
 	width:76%;
 	padding: 50px;
+}
+.container-table100{
+	background: unset ;
 }

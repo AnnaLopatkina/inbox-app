@@ -6,28 +6,75 @@
 		<title>Users list</title>
 		 <!--===============================================================================================-->	
 		<link th:href="@{/resources/images/icons/favicon.ico}" rel="icon" type="image/png" href="../static/resources/images/icons/favicon.ico"/>
-		<!--===============================================================================================-->
+	<!--===============================================================================================-->
 		<link th:href="@{/resources/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/bootstrap/css/bootstrap.min.css">
-		<!--===============================================================================================-->
+	<!--===============================================================================================-->
 		<link th:href="@{/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css" href="../static/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    	<!--===============================================================================================-->	
+	<!--===============================================================================================-->
+		<link th:href="@{/resources/vendor/animate/animate.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/animate/animate.css">
+	<!--===============================================================================================-->	
+		<link th:href="@{/resources/vendor/select2/select2.min.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+		<link th:href="@{/resources/vendor/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<!--===============================================================================================-->
+		<link th:href="@{/resources/css/util.css}" rel="stylesheet" type="text/css" href="../static/resources/css/util.css">
+		<link th:href="@{/resources/css/user-list.css}" rel="stylesheet" type="text/css" href="../static/resources/css/user-list.css">
+	<!--===============================================================================================-->
 		<link th:href="@{/resources/css/menu.css}" rel="stylesheet" type="text/css" href="../static/resources/css/menu.css">
+	
 	</head>
 	<body>
 	
 		
-	<div class="main">
+	<div class="main row">
 	    <!-- MENU -->
-			<div class="sidebar-menu" th:include="menu :: menu"></div>	
+			<div class="sidebar-menu col-md-3" th:include="menu :: menu"></div>	
 		<!-- /MENU -->
-	    	<div class="main-app">
-				<h1>USERS LIST</h1>
-				<ul th:each="user : ${users}">
-					<li th:text="${user}">
-					</li>
-				</ul>
+		
+		
+		<div class="limiter col-9">
+		<h1 class="display-4 ">INBOX - Userslist</h1>
+		<p class="lead mb-0">All together against loneliness</p>
+		<div class="container-fluid mt-5 pl-0">
+			<div class="table100">
+				<table>
+					<thead>
+						<tr class="table100-head">
+							<th class="column1">Name</th>
+							<th class="column2">Firstname</th>
+							<th class="column3">Email</th>
+							<th class="column4">Username</th>
+							<th class="column5">Roles</th>
+							<th class="column6">ID</th>
+						</tr>
+					</thead>
+					<tbody>
+							<tr th:each="user : ${users}">
+								<td class="column1" th:text="${user.name}"></td>
+								<td class="column2" th:text="${user.firstname}"></td>
+								<td class="column3" th:text="${user.email}"></td>
+								<td class="column4" th:text="${user.username}"></td>
+								<td class="column5" th:text="${user.roles}"></td>
+								<td class="column6" th:text="${user.userId}"></td>
+							</tr>
+					</tbody>
+				</table>
 			</div>
+		</div>
+	</div>
+
 			
 		</div>
+		
+		<!--===============================================================================================-->	
+	<script th:src="@{/resources/vendor/jquery/jquery-3.2.1.min.js}" src="/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script th:src="@{/resources/vendor/bootstrap/js/popper.js}" src="/resources/vendor/bootstrap/js/popper.js"></script>
+	<script th:src="@{/resources/vendor/bootstrap/js/bootstrap.min.js}" src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script th:src="@{/resources/vendor/select2/select2.min.js}" src="/resources/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script th:src="@{/resources/js/user-list.js}" src="js/user-list.js"></script>
+	
 	</body>
 </html>
