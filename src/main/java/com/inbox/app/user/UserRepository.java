@@ -1,4 +1,4 @@
-package com.inbox.app.users;
+package com.inbox.app.user;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.util.Streamable;

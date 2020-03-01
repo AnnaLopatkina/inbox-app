@@ -1,4 +1,4 @@
-package com.inbox.app.users;
+package com.inbox.app.user;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.inbox.app.controller.Mail;
 
 @Controller
-public class UsersController {
+public class UserController {
 	
 	private final Mail mail ;
 	private final UserManagement userManagement;
 	
-	public UsersController(UserManagement userManagement , Mail mail ) {
+	public UserController(UserManagement userManagement , Mail mail ) {
 		this.userManagement = userManagement ;
 		this.mail = mail ;
 	}
@@ -39,12 +39,7 @@ public class UsersController {
 		
 		if(verifyForm(form)) {
 			userManagement.addUser(form);	
-			try {
-				mail.sendMail(form.getEmail());
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			setTimeout(() -> sendConfirmEmail(form.getEmail()), 200);
 		}
 		return "login";
 	}
@@ -52,5 +47,26 @@ public class UsersController {
 	// Soll verifizieren ob den Formular richtig angelegt ist . 
 	private boolean verifyForm (UserForm form) {
 		return true ;
+	}
+	
+	private void sendConfirmEmail(String email) {
+		try {
+			mail.sendMail(email);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private void setTimeout(Runnable runnable, int delay){
+	    new Thread(() -> {
+	        try {
+	            Thread.sleep(delay);
+	            runnable.run();
+	        }
+	        catch (Exception e){
+	            System.err.println(e);
+	        }
+	    }).start();
 	}
 }

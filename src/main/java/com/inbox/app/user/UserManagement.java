@@ -1,4 +1,4 @@
-package com.inbox.app.users;
+package com.inbox.app.user;
 
 import javax.transaction.Transactional;
 
