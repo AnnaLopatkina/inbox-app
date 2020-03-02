@@ -57,7 +57,7 @@ public class UserController {
 			userManagement.addUser(form);	
 			setTimeout(() -> sendConfirmEmail(form.getEmail()), 200);
 		}
-		return "login";
+		return "redirect:/";
 	}
 	
 	// Soll verifizieren ob den Formular richtig angelegt ist . 
