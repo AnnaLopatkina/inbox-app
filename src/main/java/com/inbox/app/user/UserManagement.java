@@ -33,17 +33,18 @@ public class UserManagement {
 	public User getUserByName(String name) {
 		for(User u : userRepository.findAll()) {
 			if(u.getName().equals(name)) {
-				
 				return u ;
 			}
 		}
 		return null ;
 	}
 	
+	/* USERNAME = EMAIL */
 	public void deleteUser(Long id){
 		for(User user : userRepository.findAll()){
 			if(user.getUserId() == id){
 				userRepository.delete(user);
+				accounts.delete(accounts.findByUsername(user.getAccount()).get());
 			}
 		}
 	}
