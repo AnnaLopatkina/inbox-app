@@ -49,7 +49,7 @@ public class UserController {
 	public String showSignup() {
 		return "sign-up";
 	}
-	
+		
 	@PostMapping("/sign-up")
 	String getUserForm(UserForm form, Model model){
 		
@@ -59,6 +59,12 @@ public class UserController {
 		}
 		return "redirect:/";
 	}
+	
+	@GetMapping("/profile")
+	public String showProfile() {
+		return "profile";
+	}
+
 	
 	// Soll verifizieren ob den Formular richtig angelegt ist . 
 	private boolean verifyForm (UserForm form) {
@@ -94,8 +100,6 @@ public class UserController {
 	            if(principal instanceof UserDetails) {
 	                final UserDetails user = (UserDetails) principal;
 	                usersname.add(user.getUsername());
-	                // Do something with user
-	                System.out.println(user);
 	            }
 	        }
 	        
