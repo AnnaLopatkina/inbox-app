@@ -1,5 +1,7 @@
 package com.inbox.app.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,14 +15,21 @@ public class UserController {
 	private final Mail mail ;
 	private final UserManagement userManagement;
 	
-	public UserController(UserManagement userManagement , Mail mail ) {
+	@Autowired
+    private final ActiveUserStore activeUserStore;
+	
+	public UserController(UserManagement userManagement , Mail mail , ActiveUserStore activeUserStore) {
 		this.userManagement = userManagement ;
 		this.mail = mail ;
+		this.activeUserStore = activeUserStore ;
 	}
 	
 	@GetMapping("/users")
-	public String showUsers(Model model) {
+	public String showUsers(Model model  , Authentication authentication) {
 		model.addAttribute("users" , userManagement.findAll());
+		model.addAttribute("auth" , (authentication != null) ? authentication : null);
+		
+		getAllConnectedUsers();
 		return "users";
 	}
 	
@@ -69,4 +78,12 @@ public class UserController {
 	        }
 	    }).start();
 	}
+	
+	private void getAllConnectedUsers() {
+		System.err.println(activeUserStore.getUsers().size());
+		
+	}
+	
+	
+	
 }

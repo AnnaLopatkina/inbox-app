@@ -44,12 +44,14 @@
 			
 			
 			                <li data-toggle="collapse" data-target="#service" class="collapsed">
-			                  <a href="#"><i class="fa fa-globe fa-lg"></i> Services <span class="arrow"></span></a>
+			                  <a href="#"><i class="fa fa-globe fa-lg"></i> Administration <span class="arrow"></span></a>
 			                </li>  
 			                <ul class="sub-menu collapse" id="service">
-			                  <li>New Service 1</li>
-			                  <li>New Service 2</li>
-			                  <li>New Service 3</li>
+			                   	<li>
+			                  		<a th:href="@{/users}" href="#">
+			                  			<i class="fa fa-users fa-lg"></i> Users
+			                 	 	</a>
+			                	</li>
 			                </ul>
 			
 			
@@ -68,13 +70,6 @@
 			                  <i class="fa fa-user fa-lg"></i> Profile
 			                  </a>
 			                  </li>
-			
-			                 <li>
-			                  <a th:href="@{/users}" href="#">
-			                  <i class="fa fa-users fa-lg"></i> Users
-			                  </a>
-			                </li>
-			                
 			                <li sec:authorize="isAuthenticated()">
 	                			<form action="#" id ="logoutForm" th:action="@{/logout}" method="post">	
 	                				<a href="#" onclick="document.getElementById('logoutForm').submit()">

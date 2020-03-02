@@ -39,7 +39,7 @@
   list-style: none;
   padding: 0px;
   margin: 0px;
-  line-height: 35px;
+  line-height: 55px;
   cursor: pointer;
   /*    
     .collapsed{
@@ -82,7 +82,7 @@
 .nav-side-menu li .sub-menu li {
   background-color: #181c20;
   border: none;
-  line-height: 28px;
+  line-height: 40px;
   border-bottom: 1px solid #23282e;
   margin-left: 0px;
 }
