@@ -66,14 +66,14 @@
                         <td><a href="#">
                         	<img th:src="@{/resources/images/profile.png}" class="avatar" alt="Avatar">
                         		<span th:text="${#strings.capitalize(user.firstname)} + '  ' + ${#strings.capitalize(user.name)}">
-                        			 Michael Holz
+                        			 Any und Michael bauen ein Web-App
                         		</span>
                         	</a>
                         </td>
-                        <td  th:text="${user.email}">04/10/2013</td>                        
+                        <td  th:text="${user.email}">boss@mail.abc</td>                        
                         <td  th:text="${user.roles}">Admin</td>
-						<td th:if="${auth.getName() == user.email}"><span class="status text-success">&bull;</span> Online </td>
-						<td th:if="${auth.getName() != user.email}"><span class="status text-danger">&bull;</span> Offline </td>
+						<td th:if="${auth.contains(user.email)}"><span class="status text-success">&bull;</span> Online </td>
+						<td th:if="${!auth.contains(user.email)}"><span class="status text-danger">&bull;</span> Offline </td>
 						
 						<td>
 							<a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="fa fa-cog"></i></a>

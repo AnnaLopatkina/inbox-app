@@ -1,7 +1,12 @@
 package com.inbox.app.user;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,24 +17,26 @@ import com.inbox.app.controller.Mail;
 @Controller
 public class UserController {
 	
+	@Autowired
+	private SessionRegistry sessionRegistry;
+	private List<String> usersname ; 
 	private final Mail mail ;
 	private final UserManagement userManagement;
 	
-	@Autowired
-    private final ActiveUserStore activeUserStore;
-	
-	public UserController(UserManagement userManagement , Mail mail , ActiveUserStore activeUserStore) {
+	public UserController(UserManagement userManagement , Mail mail ) {
 		this.userManagement = userManagement ;
 		this.mail = mail ;
-		this.activeUserStore = activeUserStore ;
+		this.usersname = null ;
 	}
 	
 	@GetMapping("/users")
 	public String showUsers(Model model  , Authentication authentication) {
 		model.addAttribute("users" , userManagement.findAll());
-		model.addAttribute("auth" , (authentication != null) ? authentication : null);
 		
-		getAllConnectedUsers();
+		usersname = getUsersFromSessionRegistry() ;
+		model.addAttribute("auth" , (usersname != null) ? usersname : null);
+
+		
 		return "users";
 	}
 	
@@ -77,11 +84,22 @@ public class UserController {
 	            System.err.println(e);
 	        }
 	    }).start();
-	}
-	
-	private void getAllConnectedUsers() {
-		System.err.println(activeUserStore.getUsers().size());
-		
+	}	 
+
+	public List<String> getUsersFromSessionRegistry() {
+		 final List<Object> allPrincipals = sessionRegistry.getAllPrincipals();
+		 List<String> usersname = new ArrayList<>();
+		 
+	        for(final Object principal : allPrincipals) {
+	            if(principal instanceof UserDetails) {
+	                final UserDetails user = (UserDetails) principal;
+	                usersname.add(user.getUsername());
+	                // Do something with user
+	                System.out.println(user);
+	            }
+	        }
+	        
+	        return usersname ;
 	}
 	
 	
