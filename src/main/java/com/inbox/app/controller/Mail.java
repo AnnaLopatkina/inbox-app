@@ -57,7 +57,7 @@ public class Mail {
 			message.setFrom(new InternetAddress((myAccountEmail)));
 			message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));	           
 			message.setSubject("Account opening");
-			message.setText("The Inbox Team thanks you for registering on our application."
+			message.setText("The Inbox Team thanks you for registering on our application. "
 						+   "Inbox - All together against loneliness.");
 			
 			return message ;
