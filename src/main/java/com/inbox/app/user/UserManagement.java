@@ -29,17 +29,17 @@ public class UserManagement {
 	public User getUserById(Long id) {
 		return userRepository.findById(id).get();
 	}
-	
-	public User getUserByName(String name) {
+	/* ACCOUNT USERNAME = EMAIL */
+	public User getUserByEmail(String email) {
 		for(User u : userRepository.findAll()) {
-			if(u.getName().equals(name)) {
+			if(u.getEmail().equals(email)) {
 				return u ;
 			}
 		}
 		return null ;
 	}
 	
-	/* USERNAME = EMAIL */
+	/* ACCOUNT USERNAME = EMAIL */
 	public void deleteUser(Long id){
 		for(User user : userRepository.findAll()){
 			if(user.getUserId() == id){

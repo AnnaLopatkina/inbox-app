@@ -68,6 +68,7 @@ public class UserController {
 	
 	// Soll verifizieren ob den Formular richtig angelegt ist . 
 	private boolean verifyForm (UserForm form) {
+		// Anja
 		return true ;
 	}
 	
