@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
@@ -21,10 +22,13 @@ public class User {
 	private String account;
 	private ArrayList<Role> roles;
 	private UserAccountIdentifier accountId;
+	
+	private @OneToOne PersonalInformation informations;
+
 	@SuppressWarnings("unused")
 	private User() {}
 	
-	public User(UserAccount account , String name , String firstname , String username , String email  ) {
+	public User(UserAccount account , String name , String firstname , String username , String email , PersonalInformation informations ) {
 		this.account = account.getUsername();
 		this.accountId = account.getId();
 		this.roles = new ArrayList<>(account.getRoles().toList());
@@ -32,8 +36,17 @@ public class User {
 		this.name = name ;
 		this.email = email ;
 		this.username = username ;
+		this.informations = informations ;
 	}
 
+
+	public PersonalInformation getInformations() {
+		return informations;
+	}
+
+	public void setInformations(PersonalInformation informations) {
+		this.informations = informations;
+	}
 
 	public String getUsername() {
 		return username;

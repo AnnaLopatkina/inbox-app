@@ -23,7 +23,7 @@ public class UserManagement {
 		var password = UnencryptedPassword.of(userForm.getPassword());
 		var account = accounts.create(userForm.getEmail(), password, Role.of("USER") );
 		
-		return userRepository.save(new User(account , userForm.getName() ,userForm.getFirstname() , userForm.getUsername() , userForm.getEmail())) ;
+		return userRepository.save(new User(account , userForm.getName() ,userForm.getFirstname() , userForm.getUsername() , userForm.getEmail() , null)) ;
 	}
 	
 	public User getUserById(Long id) {
