@@ -31,7 +31,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/users")
-	public String showUsers(Model model  , Authentication authentication) {
+	public String showUsers(Model model) {
 		model.addAttribute("users" , userManagement.findAll());	
 		usersname = getUsersFromSessionRegistry() ;
 		model.addAttribute("auth" , (usersname != null) ? usersname : null);
@@ -59,9 +59,17 @@ public class UserController {
 	}
 	
 	@GetMapping("/profile/{id}")
-	public String showProfile(@PathVariable Long id , Model model) {
+	public String showProfile(@PathVariable Long id , Model model , Authentication authentication) {
 		model.addAttribute("user" , userManagement.getUserById(id));
+		model.addAttribute("authEmail" , authentication.getName());
 		return "profile";
+	}
+	
+	@GetMapping("edit/profile/{id}")
+	public String showEditProfile(@PathVariable Long id , Model model , Authentication authentication) {
+		model.addAttribute("user" , userManagement.getUserById(id));
+		model.addAttribute("authEmail" , authentication.getName());
+		return "edit-profile";
 	}
 
 	
