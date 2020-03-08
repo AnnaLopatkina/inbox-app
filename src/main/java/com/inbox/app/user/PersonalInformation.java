@@ -17,7 +17,7 @@ public class PersonalInformation {
 	private String city ;
 	private String job ;
 	private String  phone ;
-	private String adress ;
+	private String address ;
 	private String birthday ;
 	private Gender gender ;
 	private String description ; 
@@ -35,7 +35,7 @@ public class PersonalInformation {
 		this.city = "";
 		this.job = "";
 		this.phone = "";
-		this.adress = "";
+		this.address = "";
 		this.birthday = "";
 		this.gender = null;
 		this.description = ""; 
@@ -44,12 +44,12 @@ public class PersonalInformation {
 		this.profileImagePath = "profile-1.png" ;
 	}
 	
-	PersonalInformation(String city , String job , String phone , String adress ,String birthday ,
+	PersonalInformation(String city , String job , String phone , String address ,String birthday ,
 						Gender gender ,String description ){
 		this.city = city ;
 		this.job = job ; 
 		this.phone = phone ;
-		this.adress = adress ;
+		this.address = address ;
 		this.birthday = birthday ;
 		this.gender = gender ;
 		this.description = description ;
@@ -91,12 +91,12 @@ public class PersonalInformation {
 		this.phone = phone;
 	}
 
-	public String getAdress() {
-		return adress;
+	public String getaddress() {
+		return address;
 	}
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setaddress(String address) {
+		this.address = address;
 	}
 	public String getBirthday() {
 		return birthday;
@@ -141,7 +141,7 @@ public class PersonalInformation {
 	public String toString() {
 		String str = "" ; 
 		
-		str = "city: " + this.city + ", job: " + this.job + ", phone: "+this.phone+ ", adress: "+this.adress+", birthday: "+this.birthday +
+		str = "city: " + this.city + ", job: " + this.job + ", phone: "+this.phone+ ", address: "+this.address+", birthday: "+this.birthday +
 		", gender: "+this.gender+", description: "+this.description;
 		return str ;
 	}
