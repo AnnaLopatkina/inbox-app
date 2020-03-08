@@ -53,13 +53,13 @@ public class User {
 		this.informations = informations;
 	}
 
-	public void updateInfos(String city , String job , String phone , String adress ,String birthday ,
+	public void updateInfos(String city , String job , String phone , String address ,String birthday ,
 			Gender gender ,String description  , Set<Hobby> hobbies , Set<User> contact ) {
 		
 		this.informations.setCity(city);
 		this.informations.setJob(job); 
 		this.informations.setPhone(phone);
-		this.informations.setAdress(adress);
+		this.informations.setAddress(address);
 		this.informations.setBirthday(birthday);
 		this.informations.setGender(gender);
 		this.informations.setDescription(description);
