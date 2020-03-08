@@ -1,10 +1,13 @@
 package com.inbox.app.user;
 
 import java.util.ArrayList;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import org.salespointframework.useraccount.Role;
@@ -23,20 +26,22 @@ public class User {
 	private ArrayList<Role> roles;
 	private UserAccountIdentifier accountId;
 	
-	private @OneToOne PersonalInformation informations;
+	@OneToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "personalId")
+	private PersonalInformation informations;
 
 	@SuppressWarnings("unused")
 	private User() {}
 	
-	public User(UserAccount account , String name , String firstname , String username , String email , PersonalInformation informations ) {
+	public User(UserAccount account , String name , String firstname , String username , String email ) {
 		this.account = account.getUsername();
 		this.accountId = account.getId();
 		this.roles = new ArrayList<>(account.getRoles().toList());
 		this.firstname = firstname ;
 		this.name = name ;
 		this.email = email ;
-		this.username = username ;
-		this.informations = informations ;
+		this.username = username;
+		this.informations = new PersonalInformation();
 	}
 
 
@@ -48,6 +53,21 @@ public class User {
 		this.informations = informations;
 	}
 
+	public void updateInfos(String city , String job , String phone , String adress ,String birthday ,
+			Gender gender ,String description  , Set<Hobby> hobbies , Set<User> contact ) {
+		
+		this.informations.setCity(city);
+		this.informations.setJob(job); 
+		this.informations.setPhone(phone);
+		this.informations.setAdress(adress);
+		this.informations.setBirthday(birthday);
+		this.informations.setGender(gender);
+		this.informations.setDescription(description);
+		this.informations.setHobbies(hobbies);
+		this.informations.setContact(contact);
+		
+	}
+	
 	public String getUsername() {
 		return username;
 	}

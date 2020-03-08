@@ -23,12 +23,18 @@ public class UserManagement {
 		var password = UnencryptedPassword.of(userForm.getPassword());
 		var account = accounts.create(userForm.getEmail(), password, Role.of("USER") );
 		
-		return userRepository.save(new User(account , userForm.getName() ,userForm.getFirstname() , userForm.getUsername() , userForm.getEmail() , null)) ;
+		User toSave = new User(account , userForm.getName() ,userForm.getFirstname() , userForm.getUsername() , userForm.getEmail());
+		return userRepository.save(toSave) ;
 	}
 	
 	public User getUserById(Long id) {
 		return userRepository.findById(id).get();
 	}
+	
+	public User updateUser(User user) {
+		return userRepository.save(user);
+	}
+	
 	/* ACCOUNT USERNAME = EMAIL */
 	public User getUserByEmail(String email) {
 		for(User u : userRepository.findAll()) {

@@ -16,15 +16,11 @@ c<!DOCTYPE html>
 		<link th:href="@{/resources/vendor/select2/select2.min.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/select2/select2.min.css">
 	<!--===============================================================================================-->
 		<link th:href="@{/resources/vendor/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/perfect-scrollbar/perfect-scrollbar.css">
-	<!--===============================================================================================-->
-		<link th:href="@{/resources/css/util.css}" rel="stylesheet" type="text/css" href="../static/resources/css/util.css">
-		<link th:href="@{/resources/css/user-list.css}" rel="stylesheet" type="text/css" href="../static/resources/css/user-list.css">
+		<link th:href="@{/resources/css/profile.css}" rel="stylesheet" type="text/css" href="../static/resources/css/profile.css">
 	<!--===============================================================================================-->
 		<link th:href="@{/resources/css/menu.css}" rel="stylesheet" type="text/css" href="../static/resources/css/menu.css">		
 	</head>
-	<body>
-	
-		
+	<body>	
 	<div class="main row">
 	    <!-- MENU -->
 			<div class="sidebar-menu col-md-3" th:include="menu :: menu"></div>	
@@ -36,14 +32,110 @@ c<!DOCTYPE html>
 				    <h1 class="display-4 text-white">INBOX - PROFILE</h1>
 				    <p class="text-white lead mb-0 py-2">All together against loneliness</p>
 			</header>
+			
+			<div class="container mt-5 mb-5">
+				<div class="big-box">
+			        <div class="row no-gutters">
+			            <div class="d-flex col-12 col-lg-4 justify-content-center">
+			                <img class="profilePic" th:src="@{/resources/images/profile-1.png}" alt="Jeremy Profile Picture">
+			            </div>
+			            <div class="col-12 col-lg-8 pl-lg-5">
+			                  <div class="mt-2">
+			                         <div th:text="${#strings.capitalize(user.firstname)} + ' ' + ${#strings.capitalize(user.name)}" class="name">Jeremy Rose</div>
+			                         <div th:text="${#strings.capitalize(user.informations.city)}" class="location"><i class="fa fa-map-marker"></i>  New York</div>
+			                         <div th:text="${#strings.capitalize(user.informations.job)}" class="profession">Product Designer</div>
+			                  </div>
+			                  <div class="d-flex justify-content-around justify-content-lg-start m-3 ml-lg-0">
+			                          <a class="nav-link text-dark" href="#"><i class="fa fa-comments"></i> Send Message</a>
+			                          <a class="nav-link text-dark" href="#"><i class="fa fa-exclamation-triangle"></i> Report User</a>
+			                  </div>
+			                  <div class="d-flex justify-content-center justify-content-lg-start position-relative m-3 m-lg-0">
+			                          <ul class="nav nav-tabs" id="myTab" role="tablist">
+			                          	<li class="nav-item">
+										    <a class="nav-link text-dark timeline active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+										    	<i class="fa fa-eye"></i> Informations
+										    </a>
+										</li>
+										<li class="nav-item">
+										    <a class="nav-link  text-dark timeline " id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+										    	<i class="fa fa-users"></i> Contacts
+										    </a>
+										</li>
+			                          </ul>
+			                  </div>   
+			            </div>
+			        </div>
+			
+			        <div class="row no-gutters">
+			            <div class="col-12 col-lg-4 m-3 mt-5">
+			                  <div class="section mb-3">Hobbies</div>
+			                      <div th:each="hobby : ${user.informations.hobbies}" >
+			                      	<div th:text=" ${hobby}" class="pb-2">Branding</div>
+			                      </div>
+			                   
+			                   <div class="section mb-3">Basic Information</div>
+			                <label class="pb-4" for="birthday">
+			                    Birthday:
+			                    <span th:text="${#strings.capitalize(user.informations.birthday)}" id="birthday">June 5, 1992</span>
+			                </label>
+			                <label class="pb-4" for="gender">
+			                    Gender:
+			                    <span th:text="${#strings.capitalize(user.informations.gender)}" id="gender">Male</span>
+			                </label>
+			
+			              </div>
+			              <div class="col-12 col-lg-6 m-3 mt-lg-5">
+			            
+			                  <div class="tab-content" id="myTabContent">
+				                  <div class="tab-pane fade show active " id="home" role="tabpanel" aria-labelledby="home-tab">
+				                  <div class="section">Contact Information</div>
+					                <label class="pb-4" for="phone">
+					                      Phone:
+					                      <span th:text="${#strings.capitalize(user.informations.phone)}" id="phone">+49 232321019</span>
+					                </label>
+					                <label class="pb-4" for="address">
+					                      Address:
+					                      <span th:text="${#strings.capitalize(user.informations.city)}" id="address">Dresden</span>
+					                </label>
+					                <label class="pb-4" for="email">
+					                      Email:
+					                      <span id="email" th:text="${#strings.capitalize(user.email)}">muster@gmail.com</span>
+					                </label>
+					
+					                <div class="section">Description</div>
+					                <p th:text="${#strings.capitalize(user.informations.description)}">
+					                Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant
+					                impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un
+					                imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de
+					                texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique,
+					                sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de
+					                feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des
+					                applications de mise en page de texte, comme Aldus PageMaker.
+				                  	</p>
+				                  </div>
+				                  
+				  				  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+				  				  	<div class="section">Contacts</div>
+				  				  	<div th:each="contact : ${user.informations.contact}">
+				  				  		<a th:href="@{/profile/{id}(id=${contact.userId})}">
+				  				  			<p th:text=" ${#strings.capitalize(contact.firstname)} + ' ' + 
+				  				  				${#strings.capitalize(contact.name)}" class="pb-2"> </p>
+				  				  		</a>
+				  				  	</div>
+				  				  </div>
+				                  
+			                  </div> 
+			               </div>
+                        </div>
+    				</div>
+    			</div>
+			</div>	
 		</div>
-     	
-	</div>
 		
 		
 
 		
-		<!--===============================================================================================-->	
+<!--===============================================================================================-->	
 	<script th:src="@{/resources/vendor/jquery/jquery-3.2.1.min.js}" src="/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
 	<script th:src="@{/resources/vendor/bootstrap/js/popper.js}" src="/resources/vendor/bootstrap/js/popper.js"></script>
@@ -51,7 +143,7 @@ c<!DOCTYPE html>
 <!--===============================================================================================-->
 	<script th:src="@{/resources/vendor/select2/select2.min.js}" src="/resources/vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
-	<script th:src="@{/resources/js/user-list.js}" src="js/user-list.js"></script>
+	<script th:src="@{/resources/js/profile.js}" src="js/profile.js"></script>
 	
 	</body>
 </html>

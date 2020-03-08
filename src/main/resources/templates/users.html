@@ -63,7 +63,7 @@
                 <tbody>
                     <tr th:each="user : ${users}">
                         <td  th:text="${user.userId}">1</td>
-                        <td><a href="#">
+                        <td><a th:href="@{/profile/{id}(id=${user.userId})}">
                         	<img th:src="@{/resources/images/profile.png}" class="avatar" alt="Avatar">
                         		<span th:text="${#strings.capitalize(user.firstname)} + '  ' + ${#strings.capitalize(user.name)}">
                         			 Any und Michael bauen ein Web-App
@@ -80,7 +80,7 @@
 						</td>
 						
 						<td>
-							<a th:href="@{/profile}" class="settings" title="Settings" data-toggle="tooltip"><i class="fa fa-cog"></i></a>
+							<a th:href="@{/profile/{id}(id=${user.userId})}" class="settings" title="Settings" data-toggle="tooltip"><i class="fa fa-cog"></i></a>
 							<a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="fa fa-times-circle"></i></a>
 						</td>
                     </tr>

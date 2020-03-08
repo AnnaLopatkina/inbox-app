@@ -14,41 +14,45 @@ public class PersonalInformation {
 	@Id
 	@GeneratedValue
 	private long personalId;
-	String city ;
-	String job ;
-	String phone ;
-	String adress ;
-	String email ;
-	String birthday ;
-	Gender gender ;
-	String description ; 
+	private String city ;
+	private String job ;
+	private String  phone ;
+	private String adress ;
+	private String birthday ;
+	private Gender gender ;
+	private String description ; 
+	 
+	@ElementCollection
+	private Set<Hobby> hobbies ;
 	
 	@ElementCollection
-	Set<Hobby> hobbies ;
-	
+	private Set<User> contact ;
+
+
+
 	PersonalInformation(){
-		city = null;
-		job = null;
-		phone = null;
-		adress = null;
-		email = null;
-		birthday = null;
-		gender = null;
-		description = null; 
-		hobbies = null ;
+		this.city = "";
+		this.job = "";
+		this.phone = "";
+		this.adress = "";
+		this.birthday = "";
+		this.gender = null;
+		this.description = ""; 
+		this.hobbies = new HashSet<>();
+		this.contact = new HashSet<>();
 	}
 	
-	PersonalInformation(String city , String job , String phone , String adress ,String email ,String birthday ,
+	PersonalInformation(String city , String job , String phone , String adress ,String birthday ,
 						Gender gender ,String description ){
 		this.city = city ;
 		this.job = job ; 
 		this.phone = phone ;
 		this.adress = adress ;
-		this.email = email ;
 		this.birthday = birthday ;
 		this.gender = gender ;
 		this.description = description ;
-		this.hobbies = new HashSet<>() ;
+		this.hobbies = new HashSet<>();
+		this.contact = new HashSet<>();
 	
 	}
 
@@ -83,15 +87,6 @@ public class PersonalInformation {
 	public void setAdress(String adress) {
 		this.adress = adress;
 	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getBirthday() {
 		return birthday;
 	}
@@ -122,5 +117,21 @@ public class PersonalInformation {
 
 	public void setHobbies(Set<Hobby> hobbies) {
 		this.hobbies = hobbies;
+	}
+	
+	public Set<User> getContact() {
+		return contact;
+	}
+
+	public void setContact(Set<User> contact) {
+		this.contact = contact;
+	}
+	
+	public String toString() {
+		String str = "" ; 
+		
+		str = "city: " + this.city + ", job: " + this.job + ", phone: "+this.phone+ ", adress: "+this.adress+", birthday: "+this.birthday +
+		", gender: "+this.gender+", description: "+this.description;
+		return str ;
 	}
 }
