@@ -96,6 +96,14 @@ c<!DOCTYPE html>
 				                  <div class="tab-pane fade show active " id="home" role="tabpanel" aria-labelledby="home-tab">
 				                  <div class="section">Contact Information</div>
 					                <label class="pb-4" for="name">
+					                      Username:
+					                      <span id="username">
+					                      	<input type="text" th:value="${user.username}"
+			                               	name="username" id="username" required>
+			                              </span>
+					                </label>
+					                
+					                <label class="pb-4" for="name">
 					                      Firstname:
 					                      <span id="firstname">
 					                      	<input type="text" th:value="${#strings.capitalize(user.firstname)}"

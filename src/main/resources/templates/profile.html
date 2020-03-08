@@ -94,6 +94,11 @@ c<!DOCTYPE html>
 				                  <div class="tab-pane fade show active " id="home" role="tabpanel" aria-labelledby="home-tab">
 				                  <div class="section">Information</div>
 					                <label class="pb-4" for="phone">
+					                      Username:
+					                      <span th:text="${user.username}" id="phone">+49 232321019</span>
+					                </label>
+					                
+					                <label class="pb-4" for="phone">
 					                      Phone:
 					                      <span th:text="${#strings.capitalize(user.informations.phone)}" id="phone">+49 232321019</span>
 					                </label>
