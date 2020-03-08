@@ -67,6 +67,10 @@ public class UserController {
 	
 	@GetMapping("edit/profile/{id}")
 	public String showEditProfile(@PathVariable Long id , Model model , Authentication authentication) {
+		
+		if(!userManagement.getUserById(id).getEmail().equals(authentication.getName())) {
+			return "redirect:/users";
+		}
 		model.addAttribute("user" , userManagement.getUserById(id));
 		model.addAttribute("authEmail" , authentication.getName());
 		return "edit-profile";

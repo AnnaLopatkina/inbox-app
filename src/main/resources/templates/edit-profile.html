@@ -41,9 +41,10 @@ c<!DOCTYPE html>
 			            </div>
 			            <div class="col-12 col-lg-8 pl-lg-5">
 			                  <div class="mt-2">
-			                         <div th:text="${#strings.capitalize(user.firstname)} + ' ' + ${#strings.capitalize(user.name)}" class="name">Jeremy Rose</div>
+			                      	 <div th:text="${#strings.capitalize(user.firstname)} + ' ' + ${#strings.capitalize(user.name)}" class="name">Jeremy Rose</div>
 			                         <div th:text="${#strings.capitalize(user.informations.city)}" class="location"><i class="fa fa-map-marker"></i>  New York</div>
-			                         <div th:text="${#strings.capitalize(user.informations.job)}" class="profession">Product Designer</div>
+			                         <div th:text="${#strings.capitalize(user.informations.job)}" class="profession">
+			                         	
 			                  </div>
 			                  <div class="d-flex justify-content-around justify-content-lg-start m-3 ml-lg-0">
 			                          <a class="nav-link text-dark" th:href="@{/edit/profile}">
@@ -56,11 +57,6 @@ c<!DOCTYPE html>
 			                          	<li class="nav-item">
 										    <a class="nav-link text-dark timeline active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
 										    	<i class="fa fa-eye"></i> Informations
-										    </a>
-										</li>
-										<li class="nav-item">
-										    <a class="nav-link  text-dark timeline " id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
-										    	<i class="fa fa-users"></i> Contacts
 										    </a>
 										</li>
 			                          </ul>
@@ -78,11 +74,19 @@ c<!DOCTYPE html>
 			                   <div class="section mb-3">Basic Information</div>
 			                <label class="pb-4" for="birthday">
 			                    Birthday:
-			                    <span th:text="${#strings.capitalize(user.informations.birthday)}" id="birthday">June 5, 1992</span>
+			                    <span  id="birthday">
+			                    <input type="text" th:value="${user.informations.birthday}" placeholder="12.12.2012"
+				                       name="birthday" id="birthday" required>
+			                    </span>
 			                </label>
 			                <label class="pb-4" for="gender">
 			                    Gender:
-			                    <span th:text="${#strings.capitalize(user.informations.gender)}" id="gender">Male</span>
+			                    <span>
+			                    	<select id="gender" name="gender">
+			                        	<option>Male</option>
+			                        	<option>Female</option>
+			                        </select>
+			                    </span>
 			                </label>
 			
 			              </div>
@@ -91,41 +95,49 @@ c<!DOCTYPE html>
 			                  <div class="tab-content" id="myTabContent">
 				                  <div class="tab-pane fade show active " id="home" role="tabpanel" aria-labelledby="home-tab">
 				                  <div class="section">Contact Information</div>
+					                <label class="pb-4" for="name">
+					                      Firstname:
+					                      <span id="firstname">
+					                      	<input type="text" th:value="${#strings.capitalize(user.firstname)}"
+			                               	name="firstname" id="firstname" required>
+			                              </span>
+					                </label>
+					                <label class="pb-4" for="name">
+					                      Name:
+					                      <span id="name">
+					                      	<input type="text" th:value="${#strings.capitalize(user.name)}"
+			                               	name="name" id="name" required>
+			                              </span>
+					                </label>
+					                
+					                <label class="pb-4" for="name">
+					                      City:
+					                      <span id="city">
+					                      	<input type="text" th:value="${#strings.capitalize(user.informations.city)}"
+			                               	name="city" id="city" required>
+			                              </span>
+					                </label>
+					                
+					                
 					                <label class="pb-4" for="phone">
 					                      Phone:
-					                      <span th:text="${#strings.capitalize(user.informations.phone)}" id="phone">+49 232321019</span>
-					                </label>
-					                <label class="pb-4" for="address">
-					                      Address:
-					                      <span th:text="${#strings.capitalize(user.informations.city)}" id="address">Dresden</span>
+					                      <span id="phone">
+					                      	<input type="text"  th:value="${#strings.capitalize(user.informations.phone)}" placeholder="xx xxxx xxxx xxxx"
+			                               	name="phone" id="phone" required>
+			                              </span>
 					                </label>
 					                <label class="pb-4" for="email">
 					                      Email:
-					                      <span id="email" th:text="${#strings.capitalize(user.email)}">muster@gmail.com</span>
+						                  <span id="email">
+						                      <input type="text" th:value="${user.email}" placeholder="abc@abc.com"
+				                               	name="address" id="address" required>
+					                      </span>
 					                </label>
 					
 					                <div class="section">Description</div>
-					                <p th:text="${#strings.capitalize(user.informations.description)}">
-					                Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant
-					                impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un
-					                imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de
-					                texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique,
-					                sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de
-					                feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des
-					                applications de mise en page de texte, comme Aldus PageMaker.
-				                  	</p>
-				                  </div>
-				                  
-				  				  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-				  				  	<div class="section">Contacts</div>
-				  				  	<div th:each="contact : ${user.informations.contact}">
-				  				  		<a class="nav-link" th:href="@{/profile/{id}(id=${contact.userId})}">
-				  				  			<p th:text=" ${#strings.capitalize(contact.firstname)} + ' ' + 
-				  				  				${#strings.capitalize(contact.name)}" class="pb-2"> </p>
-				  				  		</a>
-				  				  	</div>
-				  				  </div>
-				                  
+					                <textarea class="area"name="description" id="description" 
+					                required th:text="${user.informations.description}" ></textarea>
+				                  </div>  
 			                  </div> 
 			               </div>
                         </div>
