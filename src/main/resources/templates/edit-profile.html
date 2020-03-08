@@ -37,7 +37,12 @@ c<!DOCTYPE html>
 				<div class="big-box">
 			        <div class="row no-gutters">
 			            <div class="d-flex col-12 col-lg-4 justify-content-center">
-			                <img class="profilePic" th:src="@{/resources/images/profile-1.png}" alt="Jeremy Profile Picture">
+			            	<form th:action="@{/upload-image/{id}(id=${user.userId})}" method="post" enctype="multipart/form-data">
+			            		<img class="profilePic" th:src="${'/resources/users_images/' + user.informations.profileImagePath}" alt="Jeremy Profile Picture">
+			            		<input type="file" name="files" multiple>
+			            		<input type= "submit" value="Upload Image"/>			  
+			            	</form>
+			                
 			            </div>
 			            <div class="col-12 col-lg-8 pl-lg-5">
 			                  <div class="mt-2">

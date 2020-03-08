@@ -37,7 +37,7 @@ c<!DOCTYPE html>
 				<div class="big-box">
 			        <div class="row no-gutters">
 			            <div class="d-flex col-12 col-lg-4 justify-content-center">
-			                <img class="profilePic" th:src="@{/resources/images/profile-1.png}" alt="Jeremy Profile Picture">
+			                <img class="profilePic" th:src="${'/resources/users_images/' + user.informations.profileImagePath}" alt="Jeremy Profile Picture">
 			            </div>
 			            <div class="col-12 col-lg-8 pl-lg-5">
 			                  <div class="mt-2">

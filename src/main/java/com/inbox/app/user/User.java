@@ -43,8 +43,6 @@ public class User {
 		this.username = username;
 		this.informations = new PersonalInformation();
 	}
-
-
 	public PersonalInformation getInformations() {
 		return informations;
 	}

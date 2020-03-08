@@ -28,6 +28,7 @@ public class PersonalInformation {
 	@ElementCollection
 	private Set<User> contact ;
 
+	private String profileImagePath;
 
 
 	PersonalInformation(){
@@ -40,6 +41,7 @@ public class PersonalInformation {
 		this.description = ""; 
 		this.hobbies = new HashSet<>();
 		this.contact = new HashSet<>();
+		this.profileImagePath = "profile-1.png" ;
 	}
 	
 	PersonalInformation(String city , String job , String phone , String adress ,String birthday ,
@@ -53,9 +55,18 @@ public class PersonalInformation {
 		this.description = description ;
 		this.hobbies = new HashSet<>();
 		this.contact = new HashSet<>();
-	
+		this.profileImagePath = "profile-1.png";
 	}
 
+	
+	public String getProfileImagePath() {
+		return profileImagePath;
+	}
+
+	public void setProfileImagePath(String profileImagePath) {
+		this.profileImagePath = profileImagePath;
+	}
+	
 	public String getCity() {
 		return city;
 	}
