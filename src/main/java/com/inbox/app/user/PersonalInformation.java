@@ -95,7 +95,7 @@ public class PersonalInformation {
 		return address;
 	}
 
-	public void setaddress(String address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 	public String getBirthday() {

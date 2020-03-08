@@ -57,7 +57,7 @@ public class User {
 		this.informations.setCity(city);
 		this.informations.setJob(job); 
 		this.informations.setPhone(phone);
-		this.informations.setaddress(address);
+		this.informations.setAddress(address);
 		this.informations.setBirthday(birthday);
 		this.informations.setGender(gender);
 		this.informations.setDescription(description);

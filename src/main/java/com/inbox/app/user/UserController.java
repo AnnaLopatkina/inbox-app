@@ -56,8 +56,10 @@ public class UserController {
 		if(verifyForm(form)) {
 			userManagement.addUser(form);	
 			setTimeout(() -> sendConfirmEmail(form.getEmail()), 200);
+			return "redirect:/login";
 		}
-		return "redirect:/";
+		else return "redirect:/sign-up";
+
 	}
 	
 	@GetMapping("/profile/{id}")
@@ -78,11 +80,10 @@ public class UserController {
 		return "edit-profile";
 	}
 
-	
-	// Soll verifizieren ob den Formular richtig angelegt ist . 
+	// Soll verifizieren ob den Formular richtig angelegt ist
 	private boolean verifyForm (UserForm form) {
 		// Anja
-		return true ;
+		return form.getPassword() == form.getPasswordValid();
 	}
 	
 	private void sendConfirmEmail(String email) {
