@@ -114,3 +114,12 @@ input[type="password"]
     font-size: 16px;
     margin-bottom: 50px;
 }
+
+#upload , #submit{
+	display:none;
+}
+
+.button{
+	display: flex;
+    justify-content: space-evenly;
+}

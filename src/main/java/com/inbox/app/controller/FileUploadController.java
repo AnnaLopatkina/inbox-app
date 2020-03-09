@@ -31,26 +31,50 @@ public class FileUploadController {
 	public String upload(Model model , @RequestParam("files") MultipartFile file , @PathVariable Long id) {
 		
 		if(validateImage(file)) {
-			StringBuilder filesNames = new StringBuilder();
-			Path fileNameAndPath = Paths.get(uploadDirectory , file.getOriginalFilename());
-			filesNames.append(file.getOriginalFilename());
+			String fileName = generateRandowString(20);
+			Path fileNameAndPath = Paths.get(uploadDirectory , fileName);
 			try {
 				Files.write(fileNameAndPath, file.getBytes());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			model.addAttribute("msg" , "successfully uploaded files "+filesNames.toString());
-			userManagement.getUserById(id).getInformations().setProfileImagePath(file.getOriginalFilename());
+			userManagement.getUserById(id).getInformations().setProfileImagePath(fileName);
 			userManagement.updateUser(userManagement.getUserById(id));
+			
 		}
 		return "redirect:/users" ;
 	}
 	
 	private boolean validateImage(MultipartFile file) {
-		
-		return true;
+		if(file.getOriginalFilename().contains(".png") || file.getOriginalFilename().contains(".PNG")
+				|| file.getOriginalFilename().contains(".jpg") || file.getOriginalFilename().contains(".jpeg") ||
+				file.getOriginalFilename().contains(".JPG") || file.getOriginalFilename().contains(".JPEG") || 
+				file.getOriginalFilename().contains(".gif") || file.getOriginalFilename().contains(".GIF")) {
+			return true;
+		}
+		return false;
 	}
 
+	private String generateRandowString(int n) 
+    { 
+  
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                                    + "0123456789"
+                                    + "abcdefghijklmnopqrstuvxyz"; 
+  
+        StringBuilder sb = new StringBuilder(n); 
+  
+        for (int i = 0; i < n; i++) { 
+            int index 
+                = (int)(AlphaNumericString.length() 
+                        * Math.random()); 
+  
+            sb.append(AlphaNumericString 
+                          .charAt(index)); 
+        } 
+  
+        return sb.toString(); 
+    } 
 	
 }

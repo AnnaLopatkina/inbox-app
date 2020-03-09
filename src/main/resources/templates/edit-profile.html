@@ -39,8 +39,16 @@ c<!DOCTYPE html>
 			            <div class="d-flex col-12 col-lg-4 justify-content-center">
 			            	<form th:action="@{/upload-image/{id}(id=${user.userId})}" method="post" enctype="multipart/form-data">
 			            		<img class="profilePic" th:src="${'/resources/users_images/' + user.informations.profileImagePath}" alt="Jeremy Profile Picture">
-			            		<input type="file" name="files" multiple>
-			            		<input type= "submit" value="Upload Image"/>			  
+			            		<div class="button">
+			            			<div>
+			            				<button><i class="fa fa-pencil-square-o" id="upload_btn" aria-hidden="true"></i></button>
+			            			</div>
+			            			<div>
+			            				<button><i class="fa fa-paper-plane-o" id="submit_btn" aria-hidden="true"></i></button>
+			            			</div>
+			            		</div>
+			            		<input type="file" name="files" id="upload" multipart>
+			            		<input type= "submit" id="submit" value="Upload Image"/>			  
 			            	</form>
 			                
 			            </div>
