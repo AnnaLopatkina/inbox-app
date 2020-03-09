@@ -5,19 +5,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
-
+	
 	@GetMapping("/")
 	public String showIndex() {
-		return "login";
+		return "redirect:/chat";
 	}
 	
-	@GetMapping("/sign-up")
-	public String showSignup() {
-		return "sign-up";
+	@GetMapping("/chat")
+	public String showChat() {
+		return "chat";
 	}
 	
-	@GetMapping("/main")
-	public String showMainChat() {
-		return "main-chat";
-	}
 }

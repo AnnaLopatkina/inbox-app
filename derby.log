@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ----------------------------------------------------------------
 Wed Feb 26 15:48:04 CET 2020:
 Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0170-81f8-14c6-000007360dd0 
@@ -142,3 +143,66 @@ Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
 Wed Feb 26 17:08:13 CET 2020:
 Shutting down instance 01e2c52e-0170-81f8-14c6-000007360dd0 on database directory memory:/Users/michealmboni/Documents/Java-Entwicklung/java-EE/Inbox-chat-app/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@55054057 
+=======
+----------------------------------------------------------------
+Fri Feb 28 22:11:59 CET 2020:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0170-8da4-4ac3-00000725e9d0 
+on database directory memory:D:\java_dev\java_ee\inbox\Inbox-app\testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4e0e2f2a 
+Loaded from file:/C:/Users/mboni/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=13.0.2+8
+user.dir=D:\java_dev\java_ee\inbox\Inbox-app
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Fri Feb 28 22:12:45 CET 2020:
+Shutting down instance a816c00e-0170-8da4-4ac3-00000725e9d0 on database directory memory:D:\java_dev\java_ee\inbox\Inbox-app\testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4e0e2f2a 
+----------------------------------------------------------------
+Fri Feb 28 22:12:46 CET 2020:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance 176240b2-0170-8da4-4ac3-00000725e9d0 
+on database directory memory:D:\java_dev\java_ee\inbox\Inbox-app\testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4e0e2f2a 
+Loaded from file:/C:/Users/mboni/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=13.0.2+8
+user.dir=D:\java_dev\java_ee\inbox\Inbox-app
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Fri Feb 28 22:16:21 CET 2020:
+Shutting down instance 176240b2-0170-8da4-4ac3-00000725e9d0 on database directory memory:D:\java_dev\java_ee\inbox\Inbox-app\testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4e0e2f2a 
+----------------------------------------------------------------
+Fri Feb 28 22:17:06 CET 2020:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a0f1c156-0170-8da4-4ac3-00000725e9d0 
+on database directory memory:D:\java_dev\java_ee\inbox\Inbox-app\testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4e0e2f2a 
+Loaded from file:/C:/Users/mboni/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=13.0.2+8
+user.dir=D:\java_dev\java_ee\inbox\Inbox-app
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Fri Feb 28 22:17:43 CET 2020:
+Shutting down instance a0f1c156-0170-8da4-4ac3-00000725e9d0 on database directory memory:D:\java_dev\java_ee\inbox\Inbox-app\testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4e0e2f2a 
+----------------------------------------------------------------
+Fri Feb 28 22:17:44 CET 2020:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance 44c541fa-0170-8da4-4ac3-00000725e9d0 
+on database directory memory:D:\java_dev\java_ee\inbox\Inbox-app\testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4e0e2f2a 
+Loaded from file:/C:/Users/mboni/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=13.0.2+8
+user.dir=D:\java_dev\java_ee\inbox\Inbox-app
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+>>>>>>> 48f9668a95b819eb1f53358e382b2c98b2b5d863

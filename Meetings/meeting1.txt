@@ -1,0 +1,24 @@
+(Mittwoch , Sonntag ) (Abend ) 
+Meeting 1 
+
+Was soll unsere App machen ? 
+
+- Chat App wie Whatsapp oder Telegram ; 
+- Leute verbinden ; 
+- Nach Interesse suchen ; ( Profile ) 
+- Gruppen für die Leuten , die gleiche Interesse haben . 
+
+Release-1 : Grundfunktionalität
+
+- sich einloggen;
+- sich registrieren;
+- Profile sehen und auswählen; 
+- wer will kann seine Interesse hinzufügen ( checkboxes ( Sport , Musik , IT , Reading ... ) ) ;
+- Users suchen nach Interessen , Id , userName , email . 
+- Chatten ; Chat herstellen ; Gruppen herstellen . 
+- Wenn jemand dich einlädst , sollst du annehmen oder nicht . 
+
+Technik : 
+- Passwort Bestätigung 
+
+Release-2 : 

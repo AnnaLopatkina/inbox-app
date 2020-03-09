@@ -8,18 +8,24 @@
 			        <!-- SIDEBAR -->
 		<nav th:fragment="menu" >
 			<div class="nav-side-menu">
-			    <div class="brand">Brand Logo</div>
+			    <div class="brand">INBOX</div>
 			    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 			  
 			        <div class="menu-list">
 			  
 			            <ul id="menu-content" class="menu-content collapse out">
 			                <li>
-			                  <a href="#">
+			                  <a  href="#">
 			                  <i class="fa fa-dashboard fa-lg"></i> Dashboard
 			                  </a>
 			                </li>
-			
+			                
+			                <li>
+			                  <a th:href="@{/chat}" href="#">
+			                  <i class="fa fa-commenting fa-lg"></i> Chat
+			                  </a>
+			                </li>
+			                
 			                <li  data-toggle="collapse" data-target="#products" class="collapsed active">
 			                  <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
 			                </li>
@@ -38,12 +44,14 @@
 			
 			
 			                <li data-toggle="collapse" data-target="#service" class="collapsed">
-			                  <a href="#"><i class="fa fa-globe fa-lg"></i> Services <span class="arrow"></span></a>
+			                  <a href="#"><i class="fa fa-globe fa-lg"></i> Administration <span class="arrow"></span></a>
 			                </li>  
 			                <ul class="sub-menu collapse" id="service">
-			                  <li>New Service 1</li>
-			                  <li>New Service 2</li>
-			                  <li>New Service 3</li>
+			                   	<li>
+			                  		<a th:href="@{/users}" href="#">
+			                  			<i class="fa fa-users fa-lg"></i> Users
+			                 	 	</a>
+			                	</li>
 			                </ul>
 			
 			
@@ -58,16 +66,17 @@
 			
 			
 			                 <li>
-			                  <a href="#">
+			                  <a th:href="@{/user_profile}" >
 			                  <i class="fa fa-user fa-lg"></i> Profile
 			                  </a>
 			                  </li>
-			
-			                 <li>
-			                  <a href="#">
-			                  <i class="fa fa-users fa-lg"></i> Users
-			                  </a>
-			                </li>
+			                <li sec:authorize="isAuthenticated()">
+	                			<form action="#" id ="logoutForm" th:action="@{/logout}" method="post">	
+	                				<a href="#" onclick="document.getElementById('logoutForm').submit()">
+	                					<i class="fa fa-sign-out fa-lg"></i> Logout
+	                				</a>			
+	                			</form>	
+							</li>
 			            </ul>
 			     </div>
 			</div>

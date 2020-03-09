@@ -1,0 +1,184 @@
+c<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Profile</title>
+		 <!--===============================================================================================-->	
+		<link th:href="@{/resources/images/icons/favicon.ico}" rel="icon" type="image/png" href="../static/resources/images/icons/favicon.ico"/>
+	<!--===============================================================================================-->
+		<link th:href="@{/resources/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+		<link th:href="@{/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css" href="../static/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+		<link th:href="@{/resources/vendor/animate/animate.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/animate/animate.css">
+	<!--===============================================================================================-->	
+		<link th:href="@{/resources/vendor/select2/select2.min.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+		<link th:href="@{/resources/vendor/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/perfect-scrollbar/perfect-scrollbar.css">
+		<link th:href="@{/resources/css/profile.css}" rel="stylesheet" type="text/css" href="../static/resources/css/profile.css">
+	<!--===============================================================================================-->
+		<link th:href="@{/resources/css/menu.css}" rel="stylesheet" type="text/css" href="../static/resources/css/menu.css">		
+	</head>
+	<body>	
+	<div class="main row">
+	    <!-- MENU -->
+			<div class="sidebar-menu col-md-3" th:include="menu :: menu"></div>	
+		<!-- /MENU -->
+		
+		
+		<div class="col-9 py-5">
+			<header class="text-center">
+				    <h1 class="display-4 text-white">INBOX - PROFILE</h1>
+				    <p class="text-white lead mb-0 py-2">All together against loneliness</p>
+			</header>
+			
+			<div class="container mt-5 mb-5">
+				<div class="big-box">
+			        <div class="row no-gutters">
+			            <div class="d-flex col-12 col-lg-4 justify-content-center">
+			            	<form th:action="@{/upload-image/{id}(id=${user.userId})}" method="post" enctype="multipart/form-data">
+			            		<img class="profilePic" th:src="${'/resources/users_images/' + user.informations.profileImagePath}" alt="Jeremy Profile Picture">
+			            		<div class="button">
+			            			<div>
+			            				<button><i class="fa fa-pencil-square-o" id="upload_btn" aria-hidden="true"></i></button>
+			            			</div>
+			            			<div>
+			            				<button><i class="fa fa-paper-plane-o" id="submit_btn" aria-hidden="true"></i></button>
+			            			</div>
+			            		</div>
+			            		<input type="file" name="files" id="upload" multipart>
+			            		<input type= "submit" id="submit" value="Upload Image"/>			  
+			            	</form>
+			                
+			            </div>
+			            <div class="col-12 col-lg-8 pl-lg-5">
+			                  <div class="mt-2">
+			                      	 <div th:text="${#strings.capitalize(user.firstname)} + ' ' + ${#strings.capitalize(user.name)}" class="name">Jeremy Rose</div>
+			                         <div th:text="${#strings.capitalize(user.informations.city)}" class="location"><i class="fa fa-map-marker"></i>  New York</div>
+			                         <div th:text="${#strings.capitalize(user.informations.job)}" class="profession">
+			                         	
+			                  </div>
+			                  <div class="d-flex justify-content-around justify-content-lg-start m-3 ml-lg-0">
+			                          <a class="nav-link text-dark" th:href="@{/edit/profile}">
+			                          	<i class="fa fa-save"></i>
+			                          		Save
+			                          </a>
+			                  </div>
+			                  <div class="d-flex justify-content-center justify-content-lg-start position-relative m-3 m-lg-0">
+			                          <ul class="nav nav-tabs" id="myTab" role="tablist">
+			                          	<li class="nav-item">
+										    <a class="nav-link text-dark timeline active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+										    	<i class="fa fa-eye"></i> Informations
+										    </a>
+										</li>
+			                          </ul>
+			                  </div>   
+			            </div>
+			        </div>
+			
+			        <div class="row no-gutters">
+			            <div class="col-12 col-lg-4 m-3 mt-5">
+			                  <div class="section mb-3">Hobbies</div>
+			                      <div th:each="hobby : ${user.informations.hobbies}" >
+			                      	<div th:text=" ${hobby}" class="pb-2">Branding</div>
+			                      </div>
+			                   
+			                   <div class="section mb-3">Basic Information</div>
+			                <label class="pb-4" for="birthday">
+			                    Birthday:
+			                    <span  id="birthday">
+			                    <input type="text" th:value="${user.informations.birthday}" placeholder="12.12.2012"
+				                       name="birthday" id="birthday" required>
+			                    </span>
+			                </label>
+			                <label class="pb-4" for="gender">
+			                    Gender:
+			                    <span>
+			                    	<select id="gender" name="gender">
+			                        	<option>Male</option>
+			                        	<option>Female</option>
+			                        </select>
+			                    </span>
+			                </label>
+			
+			              </div>
+			              <div class="col-12 col-lg-6 m-3 mt-lg-5">
+			            
+			                  <div class="tab-content" id="myTabContent">
+				                  <div class="tab-pane fade show active " id="home" role="tabpanel" aria-labelledby="home-tab">
+				                  <div class="section">Contact Information</div>
+					                <label class="pb-4" for="name">
+					                      Username:
+					                      <span id="username">
+					                      	<input type="text" th:value="${user.username}"
+			                               	name="username" id="username" required>
+			                              </span>
+					                </label>
+					                
+					                <label class="pb-4" for="name">
+					                      Firstname:
+					                      <span id="firstname">
+					                      	<input type="text" th:value="${#strings.capitalize(user.firstname)}"
+			                               	name="firstname" id="firstname" required>
+			                              </span>
+					                </label>
+					                <label class="pb-4" for="name">
+					                      Name:
+					                      <span id="name">
+					                      	<input type="text" th:value="${#strings.capitalize(user.name)}"
+			                               	name="name" id="name" required>
+			                              </span>
+					                </label>
+					                
+					                <label class="pb-4" for="name">
+					                      City:
+					                      <span id="city">
+					                      	<input type="text" th:value="${#strings.capitalize(user.informations.city)}"
+			                               	name="city" id="city" required>
+			                              </span>
+					                </label>
+					                
+					                
+					                <label class="pb-4" for="phone">
+					                      Phone:
+					                      <span id="phone">
+					                      	<input type="text"  th:value="${#strings.capitalize(user.informations.phone)}" placeholder="xx xxxx xxxx xxxx"
+			                               	name="phone" id="phone" required>
+			                              </span>
+					                </label>
+					                <label class="pb-4" for="email">
+					                      Email:
+						                  <span id="email">
+						                      <input type="text" th:value="${user.email}" placeholder="abc@abc.com"
+				                               	name="address" id="address" required>
+					                      </span>
+					                </label>
+					
+					                <div class="section">Description</div>
+					                <textarea class="area"name="description" id="description" 
+					                required th:text="${user.informations.description}" ></textarea>
+				                  </div>  
+			                  </div> 
+			               </div>
+                        </div>
+    				</div>
+    			</div>
+			</div>	
+		</div>
+		
+		
+
+		
+<!--===============================================================================================-->	
+	<script th:src="@{/resources/vendor/jquery/jquery-3.2.1.min.js}" src="/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script th:src="@{/resources/vendor/bootstrap/js/popper.js}" src="/resources/vendor/bootstrap/js/popper.js"></script>
+	<script th:src="@{/resources/vendor/bootstrap/js/bootstrap.min.js}" src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script th:src="@{/resources/vendor/select2/select2.min.js}" src="/resources/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script th:src="@{/resources/js/profile.js}" src="js/profile.js"></script>
+	
+	</body>
+</html>
