@@ -31,7 +31,7 @@ public class FileUploadController {
 	public String upload(Model model , @RequestParam("files") MultipartFile file , @PathVariable Long id) {
 		
 		if(validateImage(file)) {
-			String fileName = generateRandowString(20);
+			String fileName = generateRandomString(20);
 			Path fileNameAndPath = Paths.get(uploadDirectory , fileName);
 			try {
 				Files.write(fileNameAndPath, file.getBytes());
@@ -56,7 +56,7 @@ public class FileUploadController {
 		return false;
 	}
 
-	private String generateRandowString(int n) 
+	private String generateRandomString(int n) 
     { 
   
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"

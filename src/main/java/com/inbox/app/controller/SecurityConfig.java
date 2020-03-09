@@ -18,7 +18,7 @@ public class SecurityConfig extends SalespointSecurityConfiguration{
 		http
 			.authorizeRequests()
 				.antMatchers("/sign-up" , "/login").permitAll()
-				.antMatchers("/users" , "/chat" , "/edit/profile/{id}" , "/profile/{id}").hasRole("USER")
+				.antMatchers("/users" , "/chat" , "/edit/profile/{id}" , "/profile/{id}" , "/user_profile").hasRole("USER")
 				.and()
 			.formLogin()
 				.loginPage("/login").loginProcessingUrl("/login").and()
