@@ -35,8 +35,6 @@ public class UserController {
 		model.addAttribute("users" , userManagement.findAll());	
 		usersname = getUsersFromSessionRegistry() ;
 		model.addAttribute("auth" , (usersname != null) ? usersname : null);
-		
-		System.err.println(userManagement.getUserByEmail("mbonimichael@yahoo.fr").getInformations().getProfileImagePath());
 		return "users";
 	}
 	
