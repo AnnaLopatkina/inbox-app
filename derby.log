@@ -139,3 +139,6 @@ os.arch=x86_64
 os.version=10.14.3
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Wed Feb 26 17:08:13 CET 2020:
+Shutting down instance 01e2c52e-0170-81f8-14c6-000007360dd0 on database directory memory:/Users/michealmboni/Documents/Java-Entwicklung/java-EE/Inbox-chat-app/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@55054057 
