@@ -87,7 +87,7 @@ public class UserController {
 	// Soll verifizieren ob den Formular richtig angelegt ist
 	private boolean verifyForm (UserForm form) {
 		// Anja
-		return form.getPassword() == form.getPasswordValid();
+		return form.getPassword().equals(form.getPasswordValid());
 	}
 	
 	private void sendConfirmEmail(String email) {
