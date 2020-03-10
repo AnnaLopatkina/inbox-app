@@ -26,7 +26,7 @@ public class UserDataInitializer implements DataInitializer{
 		
 		userManagement.addUser(new UserForm("boss" , "boss" , "boss", "abc" , "abc" , "boss@abc.com"));
 		userManagement.addUser(new UserForm("mboni" , "michael" , "boss" ,"abc" , "abc" , "mbonimichael@yahoo.fr"));
-		
+		userManagement.addUser(new UserForm("Ani", "Bani", "Anibani", "nanu", "nanu", "anibani@abc.com"));
 		
 		userManagement.getUserByEmail("boss@abc.com")
 		.updateInfos("Dresden", "Software Entwickler" , "00492254561216" ,

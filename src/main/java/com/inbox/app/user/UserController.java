@@ -34,7 +34,7 @@ public class UserController {
 	public String showUsers(Model model) {
 		model.addAttribute("users" , userManagement.findAll());	
 		usersname = getUsersFromSessionRegistry() ;
-		model.addAttribute("auth" , (usersname != null) ? usersname : null);
+		model.addAttribute("auth" , usersname);
 		return "users";
 	}
 	
