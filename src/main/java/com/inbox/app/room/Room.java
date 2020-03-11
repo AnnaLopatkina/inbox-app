@@ -90,4 +90,14 @@ public class Room {
 		this.roomDescription = roomDescription;
 	}
 	
+	
+	public Long getFriendId(Long userId) {
+		for(Long id : getUsersId()) {
+			if(userId != id) {
+				System.err.println(id);
+				return id ;
+			}
+		}
+		return 0L ;
+	}
 }

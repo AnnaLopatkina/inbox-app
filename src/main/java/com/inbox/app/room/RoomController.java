@@ -14,6 +14,7 @@ public class RoomController {
 	private final UserManagement userManagement;
 	private final RoomManagement roomManagement;
 	private User authUser ;
+	
 	public RoomController(UserManagement userManagement , RoomManagement roomManagement) {
 		this.roomManagement = roomManagement;
 		this.userManagement = userManagement;
@@ -21,8 +22,12 @@ public class RoomController {
 	
 	@GetMapping("/chat")
 	public String showChat(Authentication authentication , Model model) {
-		authUser = userManagement.getUserByEmail(authentication.getName());	
+		authUser = userManagement.getUserByEmail(authentication.getName());
+		model.addAttribute("authId", authUser.getUserId());
 		model.addAttribute("rooms", roomManagement.getUserRooms(authUser.getRoomIds()));
+		model.addAttribute("userManagement", userManagement);
+		model.addAttribute("private" , RoomType.PRIVATE);
+		
 		return "chat";
 	}
 	

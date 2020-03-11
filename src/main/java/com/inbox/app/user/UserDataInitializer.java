@@ -38,7 +38,7 @@ public class UserDataInitializer implements DataInitializer{
 		userManagement.getUserByEmail("boss@abc.com").getInformations().getHobbies().add(Hobby.SPORT);
 		
 		/* INIT MICHAEL */
-		userManagement.addUser(new UserForm("mboni" , "michael" , "boss" ,"abc" , "abc" , "mbonimichael@yahoo.fr"));
+		userManagement.addUser(new UserForm("mboni" , "michael" , "micky" ,"abc" , "abc" , "mbonimichael@yahoo.fr"));
 		userManagement.getUserByEmail("mbonimichael@yahoo.fr")
 		.updateInfos("Berlin", "Web Entwickler" , "00492254561216" ,
 						"Berliner Straße 44" , "12.12.1990" , Gender.Male , "I am the Boss Assistant" ,  new HashSet<Hobby>(), new HashSet<User>());
