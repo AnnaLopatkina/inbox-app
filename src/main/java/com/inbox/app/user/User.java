@@ -31,7 +31,7 @@ public class User {
 	private PersonalInformation informations;
 
 	@SuppressWarnings("unused")
-	private User() {}
+	private User() {} 
 	
 	public User(UserAccount account , String name , String firstname , String username , String email ) {
 		this.account = account.getUsername();
