@@ -4,7 +4,7 @@ c<!DOCTYPE html>
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<title>Profile</title>
-		 <!--===============================================================================================-->	
+	<!--===============================================================================================-->	
 		<link th:href="@{/resources/images/icons/favicon.ico}" rel="icon" type="image/png" href="../static/resources/images/icons/favicon.ico"/>
 	<!--===============================================================================================-->
 		<link th:href="@{/resources/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/bootstrap/css/bootstrap.min.css">
@@ -14,8 +14,9 @@ c<!DOCTYPE html>
 		<link th:href="@{/resources/vendor/animate/animate.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/animate/animate.css">
 	<!--===============================================================================================-->	
 		<link th:href="@{/resources/vendor/select2/select2.min.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/select2/select2.min.css">
-	<!--===============================================================================================-->
+	<!--===============================================================================================-->		
 		<link th:href="@{/resources/vendor/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<!--===============================================================================================-->		
 		<link th:href="@{/resources/css/profile.css}" rel="stylesheet" type="text/css" href="../static/resources/css/profile.css">
 	<!--===============================================================================================-->
 		<link th:href="@{/resources/css/menu.css}" rel="stylesheet" type="text/css" href="../static/resources/css/menu.css">		
@@ -46,9 +47,9 @@ c<!DOCTYPE html>
 			                         <div th:text="${#strings.capitalize(user.informations.job)}" class="profession">Product Designer</div>
 			                  </div>
 			                  <div class="d-flex justify-content-around justify-content-lg-start m-3 ml-lg-0">
-			                          <a class="nav-link text-dark" th:if="${!user.email.equals(authEmail) } " 
-			                          		th:href="@{/openDiscution/{id}(id=${user.userId})}"><i class="fa fa-comments"></i> Send Message</a>
-			                          <a class="nav-link text-dark" th:if="${!user.email.equals(authEmail) } "
+			                          <a class="nav-link text-dark description" th:if="${!user.email.equals(authEmail) } " 
+  											th:href="@{/openDiscution/{id}(id=${user.userId})}"><i class="fa fa-comments"></i> Send Message</a>
+        							  <a class="nav-link text-dark" th:if="${!user.email.equals(authEmail) } "
 											href="#"><i class="fa fa-exclamation-triangle"></i> Report User</a>
 			                          <a class="nav-link text-dark" th:if="${user.email.equals(authEmail) } "
 											th:href="@{/edit/profile/{id}(id=${user.userId})}">

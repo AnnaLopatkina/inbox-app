@@ -66,7 +66,15 @@
 			                     	25 Dec
 			                    </small>
 			                  </div>
-			                  <p th:text="${#strings.capitalize(room.roomDescription)}" class="font-italic mb-0 text-small">Lorem ipsum dolor sit amet</p>
+			                  <p  th:if="${room.roomtype.equals(private)}" 
+			                  		th:text="${#strings.capitalize(userManagement.getUserById(room.getFriendId(authId)).firstname) 
+			                  		+ ' ' + #strings.capitalize(userManagement.getUserById(room.getFriendId(authId)).name)
+			                  	}"
+			                  class="font-italic mb-0 text-small">Lorem ipsum dolor sit amet
+			                  </p>
+			                  <p  th:if="${!room.roomtype.equals(private)}" th:text="${#strings.capitalize(room.roomDescription)}" 
+			                  class="font-italic mb-0 text-small">Lorem ipsum dolor sit amet
+			                  </p>
 			                </div>
 			              </div>
 			            </a>

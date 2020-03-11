@@ -1,8 +1,5 @@
 package com.inbox.app.room;
 
-import java.util.Collections;
-import java.util.Set;
-
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,5 +44,13 @@ public class RoomController {
 		authUser = userManagement.getUserByEmail(authentication.getName());
 		roomManagement.createFriendship(authUser, userManagement.getUserById(id), "Arrive");
 		return "redirect:/chat";
+	}
+	
+	@GetMapping("/create-group")
+	public String showGroupCreation(Authentication authentication  , Model model) {
+		authUser = userManagement.getUserByEmail(authentication.getName());
+		model.addAttribute("users" , userManagement.findAll());	
+		model.addAttribute("auth",authUser);
+		return "group-creation";
 	}
 }

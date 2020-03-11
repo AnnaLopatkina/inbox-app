@@ -1,0 +1,111 @@
+c<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Group creation</title>
+	<!--===============================================================================================-->	
+		<link th:href="@{/resources/images/icons/favicon.ico}" rel="icon" type="image/png" href="../static/resources/images/icons/favicon.ico"/>
+	<!--===============================================================================================-->
+		<link th:href="@{/resources/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+		<link th:href="@{/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css" href="../static/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+		<link th:href="@{/resources/vendor/animate/animate.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/animate/animate.css">
+	<!--===============================================================================================-->	
+		<link th:href="@{/resources/vendor/select2/select2.min.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/select2/select2.min.css">
+	<!--===============================================================================================-->		
+		<link th:href="@{/resources/vendor/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<!--===============================================================================================-->		
+		<link th:href="@{/resources/css/profile.css}" rel="stylesheet" type="text/css" href="../static/resources/css/profile.css">
+	<!--===============================================================================================-->
+		<link th:href="@{/resources/css/menu.css}" rel="stylesheet" type="text/css" href="../static/resources/css/menu.css">	
+		<link th:href="@{/resources/css/user-list.css}" rel="stylesheet" type="text/css" href="../static/resources/css/user-list.css">
+		<link th:href="@{/resources/css/checkbox.css}" rel="stylesheet" type="text/css" href="../static/resources/css/checkbox.css">	
+	</head>
+	<body>	
+	<div class="main row">
+	    <!-- MENU -->
+			<div class="sidebar-menu col-md-3" th:include="menu :: menu"></div>	
+		<!-- /MENU -->
+		
+		
+		<div class="col-9 py-5">
+			<header class="text-center">
+				    <h1 class="display-4 text-white">INBOX - GROUP CREATION</h1>
+				    <p class="text-white lead mb-0 py-2">All together against loneliness</p>
+			</header>
+			
+			<div class="container mt-5 mb-5">
+				<div class="big-box">
+				<form>
+					<label class="pb-4 pt-2 pl-4 group-name" for="name">
+                       Group Name :
+                       <span id="group_name">
+                      	  <input type="text"
+                             	name="group_name" id="group_name" required>
+                        </span>
+					</label>
+					<button type="button" class="btn btn-secondary btn-b">
+						<i class="fa fa-paper-plane-o" id="submit_btn" aria-hidden="true"></i>
+					</button>
+					<table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>						
+						<th>Email</th>
+						<th>Roles</th>
+						<th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${users}">
+                        <td  th:text="${user.userId}">1</td>
+                        <td><a th:href="@{/profile/{id}(id=${user.userId})}">
+                        	<img th:src="${'/resources/users_images/' + user.informations.profileImagePath}" 
+                        		 class="avatar" alt="Avatar">
+                        		<span th:text="${#strings.capitalize(user.firstname)} + '  ' + ${#strings.capitalize(user.name)}">
+                        			 Any und Michael bauen ein Web-App
+                        		</span>
+                        	</a>
+                        </td>
+                        <td  th:text="${user.email}">boss@mail.abc</td>                        
+                        <td  th:text="${user.roles}">Admin</td>
+						<td>
+							<div class="contact100-form-checkbox">
+								<input class="input-checkbox100 none" 
+								th:id="${user.userId}"
+								th:name ="${user.userId}"
+								 type="checkbox">
+								<label th:if="${!(auth.userId.equals(user.userId))}" class="label-checkbox100" th:for="${user.userId}">
+								</label>
+							</div>					
+						
+						</td>
+                    </tr>
+					
+                </tbody>
+            </table>
+				</form>
+				</div>
+			</div>
+			
+		</div>	
+	</div>
+		
+		
+
+		
+<!--===============================================================================================-->	
+	<script th:src="@{/resources/vendor/jquery/jquery-3.2.1.min.js}" src="/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script th:src="@{/resources/vendor/bootstrap/js/popper.js}" src="/resources/vendor/bootstrap/js/popper.js"></script>
+	<script th:src="@{/resources/vendor/bootstrap/js/bootstrap.min.js}" src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script th:src="@{/resources/vendor/select2/select2.min.js}" src="/resources/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script th:src="@{/resources/js/profile.js}" src="js/profile.js"></script>
+	
+	</body>
+</html>
