@@ -44,6 +44,9 @@ body {
 .user-box {
   background: white;
 }
+.no-active{
+	color: black !important ;
+}
 input::placeholder {
   font-size: 0.9rem;
   color: #999;

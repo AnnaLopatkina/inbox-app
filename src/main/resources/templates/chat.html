@@ -45,7 +45,10 @@
 			
 			        <div class="messages-box">
 			          <div class="list-group rounded-0">
-			            <a th:each="room : ${rooms}" class="list-group-item list-group-item-action active text-white rounded-0">
+			            <a th:each="room : ${rooms}" 
+			            	th:classappend="${room.roomId.equals(activeRoomId)} ? active : no-active"
+			            	class="list-group-item list-group-item-action  text-white rounded-0" 
+			            	th:href="@{/roomId/{id}(id=${room.roomId})}">
 			              <div class="media">
 			              	<img  th:if="${room.roomtype.equals(private)}" th:src="${'/resources/users_images/' + userManagement.getUserById(room.getFriendId(authId)).informations.profileImagePath}" a alt="user" width="50" class="rounded-circle">
 			                <img  th:if="${!room.roomtype.equals(private)}" th:src="${'/resources/users_images/' + room.imagePath}" a alt="user" width="50" class="rounded-circle">
@@ -153,6 +156,7 @@
 <!--===============================================================================================-->	
 	<script th:src="@{/resources/vendor/jquery/jquery-3.2.1.min.js}" src="/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
+	<script th:src="@{/resources/js/chat.js}" src="/resources/js/chat.js"></script>
 	<script th:src="@{/resources/vendor/bootstrap/js/popper.js}" src="/resources/vendor/bootstrap/js/popper.js"></script>
 	<script th:src="@{/resources/vendor/bootstrap/js/bootstrap.min.js}" src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script th:src="@{/resources/vendor/bootstrap/js/bootstrap.bundle.min.js}" src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

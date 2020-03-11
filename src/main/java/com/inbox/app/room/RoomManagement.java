@@ -1,6 +1,6 @@
 package com.inbox.app.room;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.transaction.Transactional;
@@ -25,24 +25,21 @@ public class RoomManagement {
 	
 	public void createFriendship(User u1 , User u2 , String description) {
 		
-		Room room = new Room(u2.getUsername() , RoomType.PRIVATE , description);
+		if(testFriendShip(u1 , u2)){
+			Room room = new Room(u2.getUsername() , RoomType.PRIVATE , description);
+			
+			u1.getInformations().getContact().add(u2.getUserId());
+			u2.getInformations().getContact().add(u1.getUserId());
+			room.getUsersId().add(u1.getUserId());
+			room.getUsersId().add(u2.getUserId());
+			roomRepository.save(room);
+			u1.getRoomIds().add(room.getRoomId());
+			u2.getRoomIds().add(room.getRoomId());
+			
+			userManagement.updateUser(u1);
+			userManagement.updateUser(u2);
+		}
 		
-		u1.getInformations().getContact().add(u2.getUserId());
-		u2.getInformations().getContact().add(u1.getUserId());
-		
-		
-		room.getUsersId().add(u1.getUserId());
-		room.getUsersId().add(u2.getUserId());
-		
-		roomRepository.save(room);
-		
-		System.err.println(room.getRoomId());
-		
-		u1.getRoomIds().add(room.getRoomId());
-		u2.getRoomIds().add(room.getRoomId());
-		
-		userManagement.updateUser(u1);
-		userManagement.updateUser(u2);
 	}
 	
 	public void createGroup(Set<User> users , String roomName , String groupDescription ) {
@@ -66,13 +63,26 @@ public class RoomManagement {
 		}
 	}
 	
+	public Room getRoomById(Long id) {
+		return roomRepository.findById(id).get();
+	}
 	public Set<Room> getUserRooms(Set<Long> roomIds) {
 		
-		Set<Room> rooms = new HashSet<>();
+		Set<Room> rooms = new LinkedHashSet<>();
 		for(Long id : roomIds) {
 			rooms.add(this.roomRepository.findById(id).get());
 		}
 		
 		return rooms ;
+	}
+	
+	private boolean testFriendShip(User u1 , User u2) {
+		for(Long id : u1.getRoomIds()) {
+			if(getRoomById(id).getRoomtype().equals(RoomType.PRIVATE)) {
+				if(getRoomById(id).getFriendId(u1.getUserId()).equals(u2.getUserId()))
+					return false;
+			}
+		}
+		return true ;
 	}
 }
