@@ -1,5 +1,6 @@
 package com.inbox.app.room;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.transaction.Transactional;
@@ -22,26 +23,40 @@ public class RoomManagement {
 	}
 	
 	
-	public void createFriendship(Set<User> users , String roomName ) {
-		Room room ;
-		if(users.size() <=2) {
-			room = new Room(roomName , RoomType.PRIVATE);
-			for(User u : users) {
-				room.getUsersId().add(u.getUserId());
-				u.getRoomIds().add(room.getRoomId());
-				userManagement.updateUser(u);
-			}
-		}
-		else {
-			room = new Room(roomName , RoomType.GROUP);
-			for(User u : users) {
-				room.getUsersId().add(u.getUserId());
-				u.getRoomIds().add(room.getRoomId());
-				userManagement.updateUser(u);
-			}
-		}
+	public void createFriendship(User u1 , User u2 , String description) {
 		
+		Room room = new Room(u2.getUsername() , RoomType.PRIVATE , description);
+				
+		userManagement.getUserById(u1.getUserId()).getInformations().getContact()
+			.add(userManagement.getUserById(u2.getUserId()));
+		
+		userManagement.getUserById(u2.getUserId()).getInformations().getContact()
+			.add(userManagement.getUserById(u1.getUserId()));
+		
+		room.getUsersId().add(u1.getUserId());
+		room.getUsersId().add(u2.getUserId());
 		roomRepository.save(room);
+		
+		u1.getRoomIds().add(room.getRoomId());
+		u2.getRoomIds().add(room.getRoomId());
+		
+		userManagement.updateUser(u1);
+		userManagement.updateUser(u2);
+			
+
+	}
+	
+	public void createGroup(Set<User> users , String roomName , String groupDescription ) {
+		Room room = new Room(roomName , RoomType.GROUP , groupDescription);
+			for(User u : users) {
+				room.getUsersId().add(u.getUserId());
+				userManagement.updateUser(u);
+			}
+			roomRepository.save(room);
+			for(User u : users) {
+				u.getRoomIds().add(room.getRoomId());
+				userManagement.updateUser(u);
+			}
 	}
 	
 	public void deleteRoom(Long id){
@@ -50,5 +65,15 @@ public class RoomManagement {
 				roomRepository.delete(room);
 			}
 		}
+	}
+	
+	public Set<Room> getUserRooms(Set<Long> roomIds) {
+		
+		Set<Room> rooms = new HashSet<>();
+		for(Long id : roomIds) {
+			rooms.add(this.roomRepository.findById(id).get());
+		}
+		
+		return rooms ;
 	}
 }

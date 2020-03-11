@@ -11,9 +11,4 @@ public class MainController {
 		return "redirect:/chat";
 	}
 	
-	@GetMapping("/chat")
-	public String showChat() {
-		return "chat";
-	}
-	
 }

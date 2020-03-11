@@ -1,5 +1,8 @@
 package com.inbox.app.room;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,18 +20,21 @@ public class Room {
 	
 	private String roomName ;
 	private RoomType roomtype ;
-	
+	private Date creationDate = new Date();
+	private String roomDescription ;
 	Room(){
 		this.messages = new HashSet<>();
 		this.usersId = new HashSet<>();
 	}
 	
-	Room(String roomName , RoomType roomtype){
+	Room(String roomName , RoomType roomtype , String roomDescription){
 		this.roomName = roomName ;
 		this.roomtype = roomtype ;
 		this.messages = new HashSet<>();
 		this.usersId = new HashSet<>();
+		this.roomDescription = roomDescription ;
 	}
+
 
 	public long getRoomId() {
 		return roomId;
@@ -69,5 +75,19 @@ public class Room {
 	public void setRoomtype(RoomType roomtype) {
 		this.roomtype = roomtype;
 	};
+	
+	public String getCreationDate() throws ParseException {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+        return format.format(creationDate);
+    }
+	
+
+	public String getRoomDescription() {
+		return roomDescription;
+	}
+
+	public void setRoomDescription(String roomDescription) {
+		this.roomDescription = roomDescription;
+	}
 	
 }
