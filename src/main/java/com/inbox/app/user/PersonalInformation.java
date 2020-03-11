@@ -26,7 +26,7 @@ public class PersonalInformation {
 	private Set<Hobby> hobbies ;
 	
 	@ElementCollection
-	private Set<User> contact ;
+	private Set<Long> contact ;
 
 	private String profileImagePath;
 
@@ -130,11 +130,11 @@ public class PersonalInformation {
 		this.hobbies = hobbies;
 	}
 	
-	public Set<User> getContact() {
+	public Set<Long> getContact() {
 		return contact;
 	}
 
-	public void setContact(Set<User> contact) {
+	public void setContact(Set<Long> contact) {
 		this.contact = contact;
 	}
 	

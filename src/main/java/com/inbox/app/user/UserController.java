@@ -64,7 +64,21 @@ public class UserController {
 	public String showProfile(@PathVariable Long id , Model model , Authentication authentication) {
 		model.addAttribute("user" , userManagement.getUserById(id));
 		model.addAttribute("authEmail" , authentication.getName());
+		model.addAttribute("userManagement" , userManagement);
 		return "profile";
+	}
+	
+	@GetMapping("profile-reload/{id}")
+	public String showProfileReload(@PathVariable Long id){
+		
+		try{
+		    Thread.sleep(1500);
+		}
+		catch(InterruptedException ex){
+		    Thread.currentThread().interrupt();
+		}
+		
+		return "redirect:/profile/" + id;
 	}
 	
 	@GetMapping("/user_profile")
@@ -84,6 +98,8 @@ public class UserController {
 		return "edit-profile";
 	}
 
+
+	
 	// Soll verifizieren ob den Formular richtig angelegt ist
 	private boolean verifyForm (UserForm form) {
 		// Anja

@@ -64,7 +64,8 @@
                     <tr th:each="user : ${users}">
                         <td  th:text="${user.userId}">1</td>
                         <td><a th:href="@{/profile/{id}(id=${user.userId})}">
-                        	<img th:src="@{/resources/images/profile.png}" class="avatar" alt="Avatar">
+                        	<img th:src="${'/resources/users_images/' + user.informations.profileImagePath}" 
+                        		 class="avatar" alt="Avatar">
                         		<span th:text="${#strings.capitalize(user.firstname)} + '  ' + ${#strings.capitalize(user.name)}">
                         			 Any und Michael bauen ein Web-App
                         		</span>

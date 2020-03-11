@@ -46,10 +46,13 @@ c<!DOCTYPE html>
 			                         <div th:text="${#strings.capitalize(user.informations.job)}" class="profession">Product Designer</div>
 			                  </div>
 			                  <div class="d-flex justify-content-around justify-content-lg-start m-3 ml-lg-0">
-			                          <a class="nav-link text-dark" th:if="${!user.email.equals(authEmail) } " href="#"><i class="fa fa-comments"></i> Send Message</a>
-			                          <a class="nav-link text-dark" th:if="${!user.email.equals(authEmail) } " href="#"><i class="fa fa-exclamation-triangle"></i> Report User</a>
-			                          <a class="nav-link text-dark" th:if="${user.email.equals(authEmail) } " th:href="@{/edit/profile/{id}(id=${user.userId})}">
-			                          	<i class="fa fa-cog"></i>
+			                          <a class="nav-link text-dark" th:if="${!user.email.equals(authEmail) } " 
+			                          		th:href="@{/openDiscution/{id}(id=${user.userId})}"><i class="fa fa-comments"></i> Send Message</a>
+			                          <a class="nav-link text-dark" th:if="${!user.email.equals(authEmail) } "
+											href="#"><i class="fa fa-exclamation-triangle"></i> Report User</a>
+			                          <a class="nav-link text-dark" th:if="${user.email.equals(authEmail) } "
+											th:href="@{/edit/profile/{id}(id=${user.userId})}">
+			                          	<i class="fa fa-cog fa-spin"></i>
 			                          		Edit
 			                          </a>
 			                  </div>
@@ -126,9 +129,9 @@ c<!DOCTYPE html>
 				  				  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 				  				  	<div class="section">Contacts</div>
 				  				  	<div th:each="contact : ${user.informations.contact}">
-				  				  		<a class="nav-link" th:href="@{/profile/{id}(id=${contact.userId})}">
-				  				  			<p th:text=" ${#strings.capitalize(contact.firstname)} + ' ' + 
-				  				  				${#strings.capitalize(contact.name)}" class="pb-2"> </p>
+				  				  		<a class="nav-link" th:href="@{/profile/{id}(id=${contact})}">
+				  				  			<p th:text=" ${#strings.capitalize(userManagement.getUserById(contact).firstname)} + ' ' + 
+				  				  				${userManagement.getUserById(contact).name}" class="pb-2"> </p>
 				  				  		</a>
 				  				  	</div>
 				  				  </div>

@@ -59,7 +59,7 @@ public class User {
 	}
 
 	public void updateInfos(String city , String job , String phone , String address ,String birthday ,
-			Gender gender ,String description  , Set<Hobby> hobbies , Set<User> contact ) {
+			Gender gender ,String description  , Set<Hobby> hobbies , Set<Long> contact ) {
 		
 		this.informations.setCity(city);
 		this.informations.setJob(job); 

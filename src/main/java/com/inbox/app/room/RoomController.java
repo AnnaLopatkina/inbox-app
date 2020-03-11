@@ -4,6 +4,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.inbox.app.user.User;
 import com.inbox.app.user.UserManagement;
@@ -31,4 +32,10 @@ public class RoomController {
 		return "chat";
 	}
 	
+	@GetMapping("/openDiscution/{id}")
+	public String openDiscution(Authentication authentication , @PathVariable Long id) {
+		authUser = userManagement.getUserByEmail(authentication.getName());
+		roomManagement.createFriendship(authUser, userManagement.getUserById(id), "Arrive");
+		return "redirect:/chat";
+	}
 }

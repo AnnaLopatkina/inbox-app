@@ -22,6 +22,8 @@ public class Room {
 	private RoomType roomtype ;
 	private Date creationDate = new Date();
 	private String roomDescription ;
+	private String imagePath;
+	
 	Room(){
 		this.messages = new HashSet<>();
 		this.usersId = new HashSet<>();
@@ -33,6 +35,7 @@ public class Room {
 		this.messages = new HashSet<>();
 		this.usersId = new HashSet<>();
 		this.roomDescription = roomDescription ;
+		this.imagePath = "profile-1.png";
 	}
 
 
@@ -77,7 +80,7 @@ public class Room {
 	};
 	
 	public String getCreationDate() throws ParseException {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         return format.format(creationDate);
     }
 	
@@ -94,10 +97,17 @@ public class Room {
 	public Long getFriendId(Long userId) {
 		for(Long id : getUsersId()) {
 			if(userId != id) {
-				System.err.println(id);
 				return id ;
 			}
 		}
 		return 0L ;
+	}
+	
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 }

@@ -40,7 +40,7 @@ public class FileUploadController {
 			userManagement.updateUser(userManagement.getUserById(id));
 			
 		}
-		return "redirect:/users" ;
+		return "redirect:/profile-reload/" + id ;
 	}
 	
 	private boolean validateImage(MultipartFile file) {
