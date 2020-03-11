@@ -1,9 +1,11 @@
 package com.inbox.app.user;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,6 +28,10 @@ public class User {
 	private ArrayList<Role> roles;
 	private UserAccountIdentifier accountId;
 	
+	private @ElementCollection Set<Long> roomIds ;
+	
+
+
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "personalId")
 	private PersonalInformation informations;
@@ -42,6 +48,7 @@ public class User {
 		this.email = email ;
 		this.username = username;
 		this.informations = new PersonalInformation();
+		this.roomIds = new HashSet<>();
 	}
 	public PersonalInformation getInformations() {
 		return informations;
@@ -128,6 +135,14 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public Set<Long> getRoomIds() {
+		return roomIds;
+	}
+
+	public void setRoomIds(Set<Long> roomIds) {
+		this.roomIds = roomIds;
 	}
 	
 	public String toString() {
