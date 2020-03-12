@@ -60,9 +60,6 @@ public class Room {
 
 	public List<Message> getMessages() {
 		
-		for(Message m : messages) {
-			System.err.println(m.getMessageId());
-		}
 		return messages;
 	}
 

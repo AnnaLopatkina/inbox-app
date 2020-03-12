@@ -149,8 +149,9 @@
 				    	<!-- MODAL END -->
 				    </div>
 			      </div>
-			      <div class="px-4 py-5 chat-box bg-white">
-			      		<div th:if="${activeRoom != null}" >
+			      <div th:if="${activeRoom != null}"  >
+			      <div id="place" th:if="${activeRoom.isMember(authId)}" class="px-4 py-5 chat-box bg-white">
+			      		<div id="send" th:if="${activeRoom != null}" >
 					        
 					        <!-- Sender Message-->
 					        <div th:each="message : ${activeRoom.messages}" class="media w-50 mb-3" 
@@ -169,17 +170,21 @@
 					        </div> 
 						</div>
 			      </div>
+			      </div>
 			
 			      <!-- Typing area -->
-			      <form th:if="${activeRoom != null}"  method="post" role="form" id="form" th:action="@{/send-message}" th:object="${form}" class="bg-light">
-			        <div class="input-group">
-			          <input type="text" name="message" id="message" placeholder="Type a message" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
-			          <div class="input-group-append">
-			            <button id="button-addon2" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
-			          </div>
-			        </div>
-			      </form>
-			
+			      <div th:if="${activeRoom != null}">
+			      <div th:if="${activeRoom.isMember(authId)}" >
+				      <form th:if="${activeRoom != null}"  method="post" role="form" id="form" th:action="@{/send-message}" th:object="${form}" class="bg-light">
+				        <div class="input-group">
+				          <input type="text" name="message" id="message" placeholder="Type a message" aria-describedby="button-addon2" class="myMessage form-control rounded-0 border-0 py-4 bg-light">
+				          <div class="input-group-append">
+				            <button id="button-addon2" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
+				          </div>
+				        </div>
+				      </form>
+			      </div>
+			    </div>
 			    </div>
 			  </div>
 			</div>

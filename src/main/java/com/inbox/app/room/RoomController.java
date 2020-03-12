@@ -90,15 +90,18 @@ public class RoomController {
 	
 	
 	@PostMapping("/send-message")
-	public String receiveMessage(Authentication authentication ,
+	public String receiveMessage(Authentication authentication , Model model ,
 			@RequestParam(value="message" , required = true) String sms){
 		
+		model.addAttribute("message",sms);
 		if(activeRoomId != null) {
-			authUser = userManagement.getUserByEmail(authentication.getName());
-			roomManagement.sendMessage(activeRoomId, new Message(authUser.getUserId(), sms ,
-					authUser.getInformations().getProfileImagePath()));
+			if(!sms.isBlank() || !sms.isEmpty()) {
+				authUser = userManagement.getUserByEmail(authentication.getName());
+				roomManagement.sendMessage(activeRoomId, new Message(authUser.getUserId(), sms ,
+						authUser.getInformations().getProfileImagePath()));
+				
+			}			
 		}
 		return "redirect:/chat";
-	}
-	
+	}	
 }

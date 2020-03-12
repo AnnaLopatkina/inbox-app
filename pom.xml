@@ -21,7 +21,6 @@
 	</properties>
 
 	<dependencies>
-
 		<!--
 			Additional project dependencies go here.
 			BUT PLEASE NOTE!
@@ -31,20 +30,35 @@
 			`mvn dependency:list` command.
 			Use Maven Central for package search (https://search.maven.org/).
 		-->
-		
 		<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
 		<dependency>
 		    <groupId>org.webjars</groupId>
 		    <artifactId>bootstrap</artifactId>
 		    <version>4.4.1-1</version>
 		</dependency>
-		
 		<dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
             <version>1.4.3</version>
         </dependency>
-        
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
+		<dependency>
+		  	<groupId>org.webjars</groupId>
+		  	<artifactId>webjars-locator-core</artifactId>
+		</dependency>
+		<dependency>
+		  	<groupId>org.webjars</groupId>
+		  	<artifactId>sockjs-client</artifactId>
+		  	<version>1.0.2</version>
+		</dependency>
+		<dependency>
+		  	<groupId>org.webjars</groupId>
+		  	<artifactId>stomp-websocket</artifactId>
+		  	<version>2.3.3</version>
+		</dependency>
 	</dependencies>
 
 	<repositories>
