@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.inbox.app.user.User;
+
 @Entity
 public class Room {
 	
@@ -113,5 +115,13 @@ public class Room {
 	
 	public int getSize() {
 		return this.getUsersId().size();
+	}
+	
+	public boolean isMember(Long userId) {
+		for(Long id : usersId) {
+			if(id == userId)
+				return true ;
+		}
+		return false ;
 	}
 }

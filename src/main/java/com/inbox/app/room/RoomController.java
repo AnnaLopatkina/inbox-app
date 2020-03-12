@@ -38,8 +38,9 @@ public class RoomController {
 		model.addAttribute("activeRoomId" , activeRoomId);
 		if(activeRoomId != null) {
 			model.addAttribute("activeRoom" , roomManagement.getRoomById(activeRoomId));
+		}else {
+			model.addAttribute("activeRoom" , null);
 		}
-		
 		
 		return "chat";
 	}

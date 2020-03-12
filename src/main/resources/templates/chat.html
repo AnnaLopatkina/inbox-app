@@ -85,7 +85,7 @@
 			    </div>
 			    <!-- Chat Box-->
 			    <div class="col-7 px-0">
-			    <div class="px-4 py-2 pb-2 group-title">
+			    <div th:if="${activeRoom.isMember(authId)}" class="px-4 py-2 pb-2 group-title">
 			    	<h4 th:if="${activeRoom} != null and ${activeRoom.roomtype.equals(private)}"
 			    	 th:text="${#strings.capitalize(userManagement.getUserById(activeRoom.getFriendId(authId)).getUsername())}">
 			    	 </h4>
@@ -109,13 +109,12 @@
 				        </div>
 				        
 				        <!-- Modal body -->
-				        <div class="modal-body">
-				          <div th:each="userId : ${activeRoom.getUsersId()}">
-				          <a th:href="@{/profile/{id}(id=${userId})}">
-				          	<p  th:text="${#strings.capitalize(userManagement.getUserById(userId).getUsername())}"></p>
+				        <div th:if="${activeRoom != null}" class="modal-body">
+				          <div th:if="${activeRoom != null}" th:each="userId : ${activeRoom.getUsersId()}">
+				          <a th:if="${activeRoom != null}" th:href="@{/profile/{id}(id=${userId})}">
+				          	<p th:if="${activeRoom  != null}" th:text="${#strings.capitalize(userManagement.getUserById(userId).getUsername())}"></p>
 				          </a>
 				          </div>
-				          
 				        </div>
 				        
 				        <!-- Modal footer -->
