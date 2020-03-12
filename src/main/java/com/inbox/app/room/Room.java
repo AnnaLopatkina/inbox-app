@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.ElementCollection;
@@ -17,7 +19,7 @@ public class Room {
 	private @Id @GeneratedValue long roomId ;
 	private @ElementCollection Set<Long> usersId ;
 	
-	private @ElementCollection Set<Message> messages ;
+	private @ElementCollection List<Message> messages ;
 	
 	private String roomName ;
 	private RoomType roomtype ;
@@ -26,14 +28,14 @@ public class Room {
 	private String imagePath;
 	
 	Room(){
-		this.messages = new LinkedHashSet<>();
+		this.messages = new LinkedList<>();
 		this.usersId = new LinkedHashSet<>();
 	}
 	
 	Room(String roomName , RoomType roomtype , String roomDescription){
 		this.roomName = roomName ;
 		this.roomtype = roomtype ;
-		this.messages = new LinkedHashSet<>();
+		this.messages = new LinkedList<>();
 		this.usersId = new LinkedHashSet<>();
 		this.roomDescription = roomDescription ;
 		this.imagePath = "profile-1.png";
@@ -48,7 +50,7 @@ public class Room {
 		this.roomId = roomId;
 	}
 
-	public Set<Long> getUsersId() {
+	public Set<Long> getUsersId() {		
 		return usersId;
 	}
 
@@ -56,11 +58,15 @@ public class Room {
 		this.usersId = usersId;
 	}
 
-	public Set<Message> getMessages() {
+	public List<Message> getMessages() {
+		
+		for(Message m : messages) {
+			System.err.println(m.getMessageId());
+		}
 		return messages;
 	}
 
-	public void setMessages(Set<Message> messages) {
+	public void setMessages(List<Message> messages) {
 		this.messages = messages;
 	}
 
