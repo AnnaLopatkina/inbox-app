@@ -65,6 +65,13 @@ public class RoomController {
 		return "group-creation";
 	}
 	
+	@GetMapping("quit-group/{id}")
+	public String quitGroup(Authentication authentication , @PathVariable Long id ) {
+		roomManagement.quitGroup(userManagement.getUserByEmail(authentication.getName()) , id);
+		activeRoomId = null ;
+		return "redirect:/chat";
+	}
+	
 	@PostMapping("/create-group")
 	public String createGroup(GroupForm form , Authentication authentication ,
 			@RequestParam(value="idChecked" , required = false) List<String> usersId){
@@ -74,11 +81,12 @@ public class RoomController {
 		if(usersId != null){
 	        for(String ui : usersId){
 	            users.add(userManagement.getUserById(Long.parseLong(ui)));
-	            System.err.println(ui);
 	        }
 	        users.add(authUser);
 	        roomManagement.createGroup(users, form.getGroupName(), form.getGroupDescription());
 	    }
 	    return "redirect:/chat";
 	}
+	
+	
 }

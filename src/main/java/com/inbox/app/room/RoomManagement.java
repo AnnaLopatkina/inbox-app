@@ -52,16 +52,24 @@ public class RoomManagement {
 				u.getRoomIds().add(room.getRoomId());
 				userManagement.updateUser(u);
 			}
-			
-			System.err.println("Groupe erzeugt");
+	}
+	
+	public void quitGroup(User user , Long roomId) {
+		if(user.getRoomIds().contains(roomId)) {
+			user.getRoomIds().remove(roomId);
+			getRoomById(roomId).getUsersId().remove(user.getUserId());
+			updateRoom(getRoomById(roomId));
+		}
+		
+		if(getRoomById(roomId).getSize() == 0) {
+			this.deleteRoom(roomId);
+		}
+		
+		userManagement.updateUser(user);		
 	}
 	
 	public void deleteRoom(Long id){
-		for(Room room : roomRepository.findAll()){
-			if(room.getRoomId() == id){
-				roomRepository.delete(room);
-			}
-		}
+		roomRepository.deleteById(id);
 	}
 	
 	public Room getRoomById(Long id) {
@@ -77,6 +85,9 @@ public class RoomManagement {
 		return rooms ;
 	}
 	
+	public void updateRoom(Room room) {
+		roomRepository.save(room);
+	}
 	private boolean testFriendShip(User u1 , User u2) {
 		for(Long id : u1.getRoomIds()) {
 			if(getRoomById(id).getRoomtype().equals(RoomType.PRIVATE)) {

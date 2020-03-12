@@ -85,49 +85,70 @@
 			    </div>
 			    <!-- Chat Box-->
 			    <div class="col-7 px-0">
-			    <div th:if="${activeRoom.isMember(authId)}" class="px-4 py-2 pb-2 group-title">
-			    	<h4 th:if="${activeRoom} != null and ${activeRoom.roomtype.equals(private)}"
-			    	 th:text="${#strings.capitalize(userManagement.getUserById(activeRoom.getFriendId(authId)).getUsername())}">
-			    	 </h4>
-			    	 
-			    	 <a data-toggle="modal" data-target="#myModal">
-				    	 <h4 th:if="${activeRoom} != null and ${!activeRoom.roomtype.equals(private)}"
-				    	 th:text="${#strings.capitalize(activeRoom.roomName)} + ' with ' + ${activeRoom.getSize()} + ' members'">
-				    	</h4>
-			    	</a>
-			    	
-			    	<!-- MODAL START-->
-			    	<!-- The Modal -->
-				  <div class="modal fade" id="myModal">
-				    <div class="modal-dialog modal-dialog-centered">
-				      <div class="modal-content">
-				      
-				        <!-- Modal Header -->
-				        <div class="modal-header">
-				          <h4 class="modal-title">Users</h4>
-				          <button type="button" class="close" data-dismiss="modal">&times;</button>
-				        </div>
-				        
-				        <!-- Modal body -->
-				        <div th:if="${activeRoom != null}" class="modal-body">
-				          <div th:if="${activeRoom != null}" th:each="userId : ${activeRoom.getUsersId()}">
-				          <a th:if="${activeRoom != null}" th:href="@{/profile/{id}(id=${userId})}">
-				          	<p th:if="${activeRoom  != null}" th:text="${#strings.capitalize(userManagement.getUserById(userId).getUsername())}"></p>
-				          </a>
-				          </div>
-				        </div>
-				        
-				        <!-- Modal footer -->
-				        <div class="modal-footer">
-				          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				        </div>
-				        
-				      </div>
+			    <div th:if="${activeRoom} != null">
+				    <div th:if="${activeRoom.isMember(authId)}" class="px-4 py-2 pb-2 group-title">
+				    	<h4 th:if="${activeRoom} != null and ${activeRoom.roomtype.equals(private)}"
+				    	 th:text="${#strings.capitalize(userManagement.getUserById(activeRoom.getFriendId(authId)).getUsername())}">
+				    	 </h4>
+				    	 
+				    	 <a data-toggle="modal" data-target="#myModal">
+					    	 <h4 th:if="${activeRoom} != null and ${!activeRoom.roomtype.equals(private)}"
+					    	 th:text="${#strings.capitalize(activeRoom.roomName)} + ' with ' + ${activeRoom.getSize()} + ' members'">
+					    	</h4>
+				    	</a>
+				    	
+				    	<!-- MODAL START-->
+				    	<!-- The Modal -->
+					  <div class="modal fade" id="myModal">
+					    <div class="modal-dialog modal-dialog-centered">
+					      <div class="modal-content">
+					      
+					        <!-- Modal Header -->
+					        <div class="modal-header">
+					          <h4 class="modal-title">Users</h4>
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					        </div>
+					        
+					        <!-- Modal body -->
+					        <div th:if="${activeRoom != null}" class="modal-body">
+					          <div th:if="${activeRoom != null}" th:each="userId : ${activeRoom.getUsersId()}">
+					          <a th:if="${activeRoom != null}" th:href="@{/profile/{id}(id=${userId})}">
+					          	<p th:if="${activeRoom  != null}" th:text="${#strings.capitalize(userManagement.getUserById(userId).getUsername())}"></p>
+					          </a>
+					          </div>
+					        </div>
+					        
+					        <!-- Modal footer -->
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmation" >QUIT</button>
+					          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					        </div>
+					        
+					      </div>
+					    </div>
+					  </div>
+				    	<!-- CONFIRM MODAL -->
+				    	<!-- Modal -->
+						<div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="confirmation" aria-hidden="true">
+						  <div class="modal-dialog modal-dialog-centered" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLongTitle">Are you sure to quit this group ?</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						        <a th:href="@{/quit-group/{id}(id=${activeRoom.roomId})}" type="button" class="btn btn-danger text-white ">QUIT</a>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+				    	<!-- CONFIRM MODAL -->
+				    	<!-- MODAL END -->
 				    </div>
-				  </div>
-			    	
-			    	<!-- MODAL END -->
-			    </div>
+			      </div>
 			      <div class="px-4 py-5 chat-box bg-white">
 			        <!-- Sender Message-->
 			        <div class="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
