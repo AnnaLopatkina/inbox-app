@@ -16,10 +16,12 @@ public class RoomManagement {
 
 	private final RoomRepository roomRepository;
 	private final UserManagement userManagement;
+	private final MessageRepository messageRepository;
 	
-	public RoomManagement(RoomRepository roomRepository , UserManagement userManagement) {
+	public RoomManagement(RoomRepository roomRepository , UserManagement userManagement , MessageRepository messageRepository) {
 		this.roomRepository = roomRepository ;
 		this.userManagement = userManagement ;
+		this.messageRepository = messageRepository ;
 	}
 	
 	
@@ -85,6 +87,12 @@ public class RoomManagement {
 		return rooms ;
 	}
 	
+	public void sendMessage(Long roomId , Message message) {
+		messageRepository.save(message); 
+		getRoomById(roomId).getMessages().add(message);
+		updateRoom(getRoomById(roomId));
+		
+	}
 	public void updateRoom(Room room) {
 		roomRepository.save(room);
 	}

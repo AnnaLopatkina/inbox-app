@@ -64,14 +64,7 @@ public class RoomController {
 		model.addAttribute("auth",authUser);
 		return "group-creation";
 	}
-	
-	@GetMapping("quit-group/{id}")
-	public String quitGroup(Authentication authentication , @PathVariable Long id ) {
-		roomManagement.quitGroup(userManagement.getUserByEmail(authentication.getName()) , id);
-		activeRoomId = null ;
-		return "redirect:/chat";
-	}
-	
+
 	@PostMapping("/create-group")
 	public String createGroup(GroupForm form , Authentication authentication ,
 			@RequestParam(value="idChecked" , required = false) List<String> usersId){
@@ -88,5 +81,24 @@ public class RoomController {
 	    return "redirect:/chat";
 	}
 	
+	@GetMapping("quit-group/{id}")
+	public String quitGroup(Authentication authentication , @PathVariable Long id ) {
+		roomManagement.quitGroup(userManagement.getUserByEmail(authentication.getName()) , id);
+		activeRoomId = null ;
+		return "redirect:/chat";
+	}
+	
+	
+	@PostMapping("/send-message")
+	public String receiveMessage(Authentication authentication ,
+			@RequestParam(value="message" , required = true) String sms){
+		
+		if(activeRoomId != null) {
+			authUser = userManagement.getUserByEmail(authentication.getName());
+			roomManagement.sendMessage(activeRoomId, new Message(authUser.getUserId(), sms ,
+					authUser.getInformations().getProfileImagePath()));
+		}
+		return "redirect:/chat";
+	}
 	
 }
