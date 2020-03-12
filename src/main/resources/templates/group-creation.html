@@ -38,17 +38,26 @@ c<!DOCTYPE html>
 			
 			<div class="container mt-5 mb-5">
 				<div class="big-box">
-				<form>
+				<form  method="post" role="form" id="form" th:action="@{/create-group}" th:object="${form}">
 					<label class="pb-4 pt-2 pl-4 group-name" for="name">
                        Group Name :
-                       <span id="group_name">
+                       <span>
                       	  <input type="text"
-                             	name="group_name" id="group_name" required>
+                             	name="groupName" id="groupName"  required>
                         </span>
 					</label>
-					<button type="button" class="btn btn-secondary btn-b">
+					<label class="pb-4 pt-2 pl-4 group-name" for="description">
+                       Group Description :
+                       <span>
+                      	  <input type="text"
+                             	name="groupDescription" id="groupDescription"  required>
+                        </span>
+					</label>
+					<button  class="btn btn-secondary btn-b">
 						<i class="fa fa-paper-plane-o" id="submit_btn" aria-hidden="true"></i>
 					</button>
+					<input type= "submit" id="submit" value="Upload Image"/>
+					
 					<table class="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -74,10 +83,8 @@ c<!DOCTYPE html>
                         <td  th:text="${user.roles}">Admin</td>
 						<td>
 							<div class="contact100-form-checkbox">
-								<input class="input-checkbox100 none" 
-								th:id="${user.userId}"
-								th:name ="${user.userId}"
-								 type="checkbox">
+								<input class="input-checkbox100 none" th:id="${user.userId}"
+								 th:name ="idChecked" th:value="${user.userId}" type="checkbox" >
 								<label th:if="${!(auth.userId.equals(user.userId))}" class="label-checkbox100" th:for="${user.userId}">
 								</label>
 							</div>					

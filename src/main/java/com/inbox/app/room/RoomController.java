@@ -1,10 +1,16 @@
 package com.inbox.app.room;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.inbox.app.user.User;
 import com.inbox.app.user.UserManagement;
@@ -30,6 +36,10 @@ public class RoomController {
 		model.addAttribute("userManagement", userManagement);
 		model.addAttribute("private" , RoomType.PRIVATE);
 		model.addAttribute("activeRoomId" , activeRoomId);
+		if(activeRoomId != null) {
+			model.addAttribute("activeRoom" , roomManagement.getRoomById(activeRoomId));
+		}
+		
 		
 		return "chat";
 	}
@@ -52,5 +62,22 @@ public class RoomController {
 		model.addAttribute("users" , userManagement.findAll());	
 		model.addAttribute("auth",authUser);
 		return "group-creation";
+	}
+	
+	@PostMapping("/create-group")
+	public String createGroup(GroupForm form , Authentication authentication ,
+			@RequestParam(value="idChecked" , required = false) List<String> usersId){
+		
+		authUser = userManagement.getUserByEmail(authentication.getName());
+		Set<User> users= new HashSet<>();
+		if(usersId != null){
+	        for(String ui : usersId){
+	            users.add(userManagement.getUserById(Long.parseLong(ui)));
+	            System.err.println(ui);
+	        }
+	        users.add(authUser);
+	        roomManagement.createGroup(users, form.getGroupName(), form.getGroupDescription());
+	    }
+	    return "redirect:/chat";
 	}
 }

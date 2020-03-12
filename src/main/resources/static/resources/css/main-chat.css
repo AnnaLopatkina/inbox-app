@@ -51,3 +51,8 @@ input::placeholder {
   font-size: 0.9rem;
   color: #999;
 }
+
+.group-title{
+  background: #f8f9fa !important;
+  color: #7b7b90;
+}

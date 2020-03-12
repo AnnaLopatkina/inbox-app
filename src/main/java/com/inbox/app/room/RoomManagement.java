@@ -46,13 +46,14 @@ public class RoomManagement {
 		Room room = new Room(roomName , RoomType.GROUP , groupDescription);
 			for(User u : users) {
 				room.getUsersId().add(u.getUserId());
-				userManagement.updateUser(u);
 			}
 			roomRepository.save(room);
 			for(User u : users) {
 				u.getRoomIds().add(room.getRoomId());
 				userManagement.updateUser(u);
 			}
+			
+			System.err.println("Groupe erzeugt");
 	}
 	
 	public void deleteRoom(Long id){

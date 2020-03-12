@@ -110,4 +110,8 @@ public class Room {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
+	
+	public int getSize() {
+		return this.getUsersId().size();
+	}
 }

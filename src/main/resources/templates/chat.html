@@ -11,6 +11,7 @@
 	<!--===============================================================================================-->
 		<link th:href="@{/resources/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/bootstrap/css/bootstrap.min.css">
 	<!--===============================================================================================-->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 		<link th:href="@{/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css" href="../static/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
 		<link th:href="@{/resources/css/main-chat.css}" rel="stylesheet" type="text/css" href="../static/resources/css/main-chat.css">
@@ -84,6 +85,50 @@
 			    </div>
 			    <!-- Chat Box-->
 			    <div class="col-7 px-0">
+			    <div class="px-4 py-2 pb-2 group-title">
+			    	<h4 th:if="${activeRoom} != null and ${activeRoom.roomtype.equals(private)}"
+			    	 th:text="${#strings.capitalize(userManagement.getUserById(activeRoom.getFriendId(authId)).getUsername())}">
+			    	 </h4>
+			    	 
+			    	 <a data-toggle="modal" data-target="#myModal">
+				    	 <h4 th:if="${activeRoom} != null and ${!activeRoom.roomtype.equals(private)}"
+				    	 th:text="${#strings.capitalize(activeRoom.roomName)} + ' with ' + ${activeRoom.getSize()} + ' members'">
+				    	</h4>
+			    	</a>
+			    	
+			    	<!-- MODAL START-->
+			    	<!-- The Modal -->
+				  <div class="modal fade" id="myModal">
+				    <div class="modal-dialog modal-dialog-centered">
+				      <div class="modal-content">
+				      
+				        <!-- Modal Header -->
+				        <div class="modal-header">
+				          <h4 class="modal-title">Users</h4>
+				          <button type="button" class="close" data-dismiss="modal">&times;</button>
+				        </div>
+				        
+				        <!-- Modal body -->
+				        <div class="modal-body">
+				          <div th:each="userId : ${activeRoom.getUsersId()}">
+				          <a th:href="@{/profile/{id}(id=${userId})}">
+				          	<p  th:text="${#strings.capitalize(userManagement.getUserById(userId).getUsername())}"></p>
+				          </a>
+				          </div>
+				          
+				        </div>
+				        
+				        <!-- Modal footer -->
+				        <div class="modal-footer">
+				          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				        </div>
+				        
+				      </div>
+				    </div>
+				  </div>
+			    	
+			    	<!-- MODAL END -->
+			    </div>
 			      <div class="px-4 py-5 chat-box bg-white">
 			        <!-- Sender Message-->
 			        <div class="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
@@ -164,9 +209,13 @@
 <!--===============================================================================================-->	
 	<script th:src="@{/resources/vendor/jquery/jquery-3.2.1.min.js}" src="/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
+	
 	<script th:src="@{/resources/js/chat.js}" src="/resources/js/chat.js"></script>
 	<script th:src="@{/resources/vendor/bootstrap/js/popper.js}" src="/resources/vendor/bootstrap/js/popper.js"></script>
 	<script th:src="@{/resources/vendor/bootstrap/js/bootstrap.min.js}" src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script th:src="@{/resources/vendor/bootstrap/js/bootstrap.bundle.min.js}" src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     </body>
 </html>
