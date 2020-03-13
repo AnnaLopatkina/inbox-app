@@ -15,14 +15,17 @@ public class Message {
 	private String sms ;
 	private Date creationDate = new Date();
 	private String imagePath;
+	private Long roomId ;
 	
-	Message(){};
+	public Message(){};
 	
-	Message(long senderId , String sms , String imagePath){
+	public Message(long senderId , String sms , String imagePath , Long roomId){
 		this.senderId = senderId ;
 		this.sms = sms;
 		this.imagePath = imagePath;
+		this.roomId = roomId;
 	}
+
 
 	public long getMessageId() {
 		return messageId;
@@ -63,5 +66,14 @@ public class Message {
 	public boolean isOwner(Long userId) {
 		return userId.equals(senderId);
 	}
+	
+	public Long getRoomId() {
+		return roomId;
+	}
+
+	public void setRoomId(Long roomId) {
+		this.roomId = roomId;
+	}
+
 }
 

@@ -182,6 +182,9 @@
 				            <button id="button-addon2" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
 				          </div>
 				        </div>
+				        <span id="idRoom" style=" display: none;"  th:text="${activeRoom.roomId}"></span>
+				        <span id="userId" style=" display: none;"  th:text="${authId}"></span>
+				        <span id="userProfile" style=" display: none;" th:text="${userManagement.getUserById(authId).informations.profileImagePath}" ></span>
 				      </form>
 			      </div>
 			    </div>
