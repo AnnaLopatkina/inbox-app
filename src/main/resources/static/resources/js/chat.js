@@ -1,6 +1,18 @@
 $(document).ready(function() {
 	'use strict';
-
+	var stompClient = null;
+	connect();
+	
+	function connect() {
+		stompClient = Stomp.client('ws://localhost:8080/chat-start');
+	    stompClient.connect({}, function (frame) {
+	        console.log('Connected: ' + frame);
+	        stompClient.subscribe('/topic/distribution' , function (greeting) {
+	            console.log(greeting);
+	        });
+	    });
+	}
+	
 	function divscrolldown() {
 	    setTimeout(function () {
 	        $('#place').animate({

@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +22,6 @@ public class RoomController {
 	private final UserManagement userManagement;
 	private final RoomManagement roomManagement;
 	private User authUser ;
-	private Long activeRoomId ;
 	
 	public RoomController(UserManagement userManagement , RoomManagement roomManagement) {
 		this.roomManagement = roomManagement;
@@ -35,9 +35,9 @@ public class RoomController {
 		model.addAttribute("rooms", roomManagement.getUserRooms(authUser.getRoomIds()));
 		model.addAttribute("userManagement", userManagement);
 		model.addAttribute("private" , RoomType.PRIVATE);
-		model.addAttribute("activeRoomId" , activeRoomId);
-		if(activeRoomId != null) {
-			model.addAttribute("activeRoom" , roomManagement.getRoomById(activeRoomId));
+		model.addAttribute("activeRoomId" ,authUser.getActiveRoomId());
+		if(authUser.getActiveRoomId() != null) {
+			model.addAttribute("activeRoom" , roomManagement.getRoomById(authUser.getActiveRoomId()));
 		}else {
 			model.addAttribute("activeRoom" , null);
 		}
@@ -47,7 +47,8 @@ public class RoomController {
 	
 	@GetMapping("/roomId/{id}")
 	public String getRoomID (@PathVariable Long id) {
-		activeRoomId = id ;
+		authUser.setActiveRoomId(id);
+		userManagement.updateUser(authUser);
 		return "redirect:/chat";
 	}
 	@GetMapping("/openDiscution/{id}")
@@ -84,7 +85,7 @@ public class RoomController {
 	@GetMapping("quit-group/{id}")
 	public String quitGroup(Authentication authentication , @PathVariable Long id ) {
 		roomManagement.quitGroup(userManagement.getUserByEmail(authentication.getName()) , id);
-		activeRoomId = null ;
+		authUser.setActiveRoomId(null);
 		return "redirect:/chat";
 	}
 	
@@ -94,10 +95,10 @@ public class RoomController {
 			@RequestParam(value="message" , required = true) String sms){
 		
 		model.addAttribute("message",sms);
-		if(activeRoomId != null) {
+		if(authUser.getActiveRoomId() != null) {
 			if(!sms.isBlank() || !sms.isEmpty()) {
 				authUser = userManagement.getUserByEmail(authentication.getName());
-				roomManagement.sendMessage(activeRoomId, new Message(authUser.getUserId(), sms ,
+				roomManagement.sendMessage(authUser.getActiveRoomId(), new Message(authUser.getUserId(), sms ,
 						authUser.getInformations().getProfileImagePath()));
 				
 			}			

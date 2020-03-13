@@ -27,7 +27,7 @@ public class User {
 	private String account;
 	private ArrayList<Role> roles;
 	private UserAccountIdentifier accountId;
-	
+	private Long activeRoomId ;
 	private @ElementCollection Set<Long> roomIds ;
 	
 
@@ -49,7 +49,9 @@ public class User {
 		this.username = username;
 		this.informations = new PersonalInformation();
 		this.roomIds = new HashSet<>();
+		this.activeRoomId = null;
 	}
+
 	public PersonalInformation getInformations() {
 		return informations;
 	}
@@ -144,6 +146,15 @@ public class User {
 	public void setRoomIds(Set<Long> roomIds) {
 		this.roomIds = roomIds;
 	}
+	
+	public Long getActiveRoomId() {
+		return activeRoomId;
+	}
+
+	public void setActiveRoomId(Long activeRoomId) {
+		this.activeRoomId = activeRoomId;
+	}
+
 	
 	public String toString() {
 		String str ="";
