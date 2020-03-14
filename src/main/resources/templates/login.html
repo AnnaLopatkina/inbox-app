@@ -5,25 +5,8 @@
         <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Login</title>
-        
-    <!--===============================================================================================-->	
-		<link th:href="@{/resources/images/icons/favicon.ico}" rel="icon" type="image/png" href="../static/resources/images/icons/favicon.ico"/>
-	<!--===============================================================================================-->
-		<link th:href="@{/resources/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/bootstrap/css/bootstrap.min.css">
-	<!--===============================================================================================-->
-		<link th:href="@{/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css" href="../static/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<!--===============================================================================================-->
-		<link th:href="@{/resources/fonts/Linearicons-Free-v1.0.0/icon-font.min.css}" rel="stylesheet" type="text/css" href="../static/resources/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
-	<!--===============================================================================================-->
-		<link th:href="@{/resources/vendor/animate/animate.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/animate/animate.css">
-	<!--===============================================================================================-->	
-		<link th:href="@{/resources/vendor/css-hamburgers/hamburgers.min.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/css-hamburgers/hamburgers.min.css">
-	<!--===============================================================================================-->
-		<link th:href="@{/resources/vendor/select2/select2.min.css}" rel="stylesheet" type="text/css" href="../static/resources/vendor/select2/select2.min.css">
-	<!--===============================================================================================-->
-		<link th:href="@{/resources/css/util.css}" rel="stylesheet" type="text/css" href="../static/resources/css/util.css">
-		<link th:href="@{/resources/css/login.css}" rel="stylesheet" type="text/css" href="../static/resources/css/login.css">
-	<!--===============================================================================================-->
+		<div th:replace="fragments/link :: frameworks"></div>
+    	<div th:replace="fragments/link :: login"></div>	
     </head>
     <body> 
     
