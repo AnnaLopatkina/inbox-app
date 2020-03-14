@@ -5,6 +5,7 @@ public class SocketMessage {
 	private String message ;
 	private String roomId ;
 	private String profile ;
+	private String username;
 	
 	public String getProfile() {
 		return profile;
@@ -27,12 +28,18 @@ public class SocketMessage {
 	public String getRoomId() {
 		return roomId;
 	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public void setRoomId(String roomId) {
 		this.roomId = roomId;
 	}
 	
 	public String toString() {
-		return "sender: "+sender+", message: "+message+", roomId: "+roomId+", profile: "+profile;
+		return "sender: "+sender+", message: "+message+", roomId: "+roomId+", profile: "+profile+", username: "+username;
 	}
 	
 }

@@ -16,16 +16,17 @@ public class Message {
 	private Date creationDate = new Date();
 	private String imagePath;
 	private Long roomId ;
+	private String senderName ;
 	
 	public Message(){};
 	
-	public Message(long senderId , String sms , String imagePath , Long roomId){
+	public Message(long senderId , String sms , String imagePath , Long roomId , String senderName){
 		this.senderId = senderId ;
 		this.sms = sms;
 		this.imagePath = imagePath;
 		this.roomId = roomId;
+		this.senderName = senderName;
 	}
-
 
 	public long getMessageId() {
 		return messageId;
@@ -52,8 +53,8 @@ public class Message {
 	}
 	
 	public String getCreationDate() throws ParseException {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        return format.format(creationDate);
+		String smsDate = creationDate.getHours() + " : " + creationDate.getMinutes();
+        return smsDate;
     }
 	public String getImagePath() {
 		return imagePath;
@@ -74,6 +75,13 @@ public class Message {
 	public void setRoomId(Long roomId) {
 		this.roomId = roomId;
 	}
+	
+	public String getSenderName() {
+		return  senderName;
+	}
 
+	public void setSenderName(String senderName) {
+		this.senderName = senderName;
+	}
 }
 

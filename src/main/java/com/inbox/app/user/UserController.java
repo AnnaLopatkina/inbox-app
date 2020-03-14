@@ -72,7 +72,7 @@ public class UserController {
 	public String showProfileReload(@PathVariable Long id){
 		
 		try{
-		    Thread.sleep(1500);
+		    Thread.sleep(2000);
 		}
 		catch(InterruptedException ex){
 		    Thread.currentThread().interrupt();

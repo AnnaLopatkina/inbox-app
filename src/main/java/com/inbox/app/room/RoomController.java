@@ -99,7 +99,7 @@ public class RoomController {
 			if(!sms.isBlank() || !sms.isEmpty()) {
 				authUser = userManagement.getUserByEmail(authentication.getName());
 				roomManagement.sendMessage(authUser.getActiveRoomId(), new Message(authUser.getUserId(), sms ,
-						authUser.getInformations().getProfileImagePath() ,  authUser.getActiveRoomId() ));
+						authUser.getInformations().getProfileImagePath() ,  authUser.getActiveRoomId() , authUser.getUsername()));
 				
 			}			
 		}
