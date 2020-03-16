@@ -5,13 +5,13 @@
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<title>Users list</title>
 		<div th:replace="fragments/link :: frameworks"></div>
-    	<div th:replace="fragments/link :: user-list"></div>		
+    	<div th:replace="fragments/link :: userlist"></div>		
 	</head>
 	<body>
 		
 	<div class="main row">
 	    <!-- MENU -->
-		<div class="sidebar-menu col-md-3" th:include="menu :: menu"></div>	
+		<div class="sidebar-menu col-md-3" th:include="menu :: menu" th:with="tempName='userlist'"></div>	
 		<!-- /MENU -->
 		<div class="col-9 py-5">
 			<header class="text-center">
