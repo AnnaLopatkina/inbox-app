@@ -16,7 +16,7 @@
 	</parent>
 
 	<properties>
-		<java.version>13</java.version>
+		<java.version>11</java.version>
 		<salespoint.version>7.2.1.RELEASE</salespoint.version>
 	</properties>
 
@@ -24,7 +24,6 @@
 		<dependency>
 	   		<groupId>org.postgresql</groupId>
 	   		<artifactId>postgresql</artifactId>
-	   		<version>9.4-1206-jdbc42</version>
 		</dependency>
 		<!--
 			Additional project dependencies go here.
@@ -94,8 +93,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>13</source> 
-					<target>13</target>
+					<source>11</source> 
+					<target>11</target>
 				</configuration>
 			</plugin>
 		</plugins>
