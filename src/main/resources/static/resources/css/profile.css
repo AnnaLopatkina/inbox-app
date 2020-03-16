@@ -115,7 +115,7 @@ input[type="password"]
     margin-bottom: 50px;
 }
 
-#upload , #submit{
+#upload , #submit, #save{
 	display:none;
 }
 

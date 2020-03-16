@@ -8,6 +8,8 @@ import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
+
 @Service
 @Transactional
 public class UserManagement {
@@ -54,7 +56,16 @@ public class UserManagement {
 			}
 		}
 	}
-	
+
+
+	public void editUserInfo(User user, EditForm form){
+		 user.setEmail(form.getEmail());
+		 user.setName(form.getName());
+		 user.setUsername(form.getUsername());
+		 user.updateInfos(form.getCity(), form.getJob(), form.getPhone(),
+				form.getAddress(), form.getBirthday(), form.getGender(),
+				form.getDescription(),form.getHobbies(),form.getContact());
+	}
 	public Streamable<User> findAll() {
 		return userRepository.findAll();
 	}

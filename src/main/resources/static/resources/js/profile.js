@@ -7,3 +7,8 @@ $("#submit_btn").click(function(e){
 	e.preventDefault();
     $("#submit").trigger('click');;
 });
+
+$("#save_btn").click(function(e){
+    e.preventDefault();
+    $("#save").trigger('click');;
+});

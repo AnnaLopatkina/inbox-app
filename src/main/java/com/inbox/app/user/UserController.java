@@ -3,6 +3,7 @@ package com.inbox.app.user;
 import java.util.ArrayList;
 import java.util.List;
 
+import antlr.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.session.SessionRegistry;
@@ -10,10 +11,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.inbox.app.controller.Mail;
+
+import javax.validation.Valid;
 
 @Controller
 public class UserController {
@@ -59,7 +63,17 @@ public class UserController {
 		else return "redirect:/sign-up";
 
 	}
-	
+
+	@PostMapping("/edit-user/{id}")
+	public String addEditForm( @PathVariable Long id, EditForm form, Model model, Authentication authentication){
+		User user = userManagement.getUserById(id);
+		model.addAttribute("user" , userManagement.getUserById(id));
+		model.addAttribute("authEmail" , authentication.getName());
+		userManagement.editUserInfo(user, form);
+		return "profile";
+	}
+
+
 	@GetMapping("/profile/{id}")
 	public String showProfile(@PathVariable Long id , Model model , Authentication authentication) {
 		model.addAttribute("user" , userManagement.getUserById(id));
