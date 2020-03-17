@@ -75,14 +75,45 @@ c<!DOCTYPE html>
 			                  </div>   
 			            </div>
 			        </div>
-			
-			        <div class="row no-gutters">
+
+
+					<!--		<div class="row no-gutters">
 			            <div class="col-12 col-lg-4 m-3 mt-5">
 			                  <div class="section mb-3">Hobbies</div>
 			                      <div th:each="hobby : ${user.informations.hobbies}" >
 			                      	<div th:text=" ${hobby}" class="pb-2">Branding</div>
-			                      </div>
-			                   
+			                      </div> -->
+
+
+
+							<div class="row no-gutters">
+								<div class="col-12 col-lg-4 m-3 mt-5">
+									<button id="modal-btn" class="button">Hobbies</button>
+									<div id="my-modal" class="modal">
+										<div class="modal-content">
+											<div class="modal-header">
+												<span class="close">&times;</span>
+												<h2>Hobbies</h2>
+											</div>
+											<div class="modal-body">
+                                                     <div class="multiselect">
+                                                         <div id = "checkboxes">
+                                                             <label for="one"><input type="checkbox" id="one"/>Sport</label>
+                                                             <label for="two"><input type="checkbox" id="two"/>IT</label>
+                                                             <label for="three"><input type="checkbox" id="three"/>Music</label>
+                                                             <label for="four"><input type="checkbox" id="four"/>Dancing</label>
+                                                             <label for="five"><input type="checkbox" id="five"/>Travelling</label>
+                                                         </div>
+                                                     </div>
+											<div class="modal-footer">
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                </div>
+											</div>
+										</div>
+									</div>
+                                    </div>
 			                   <div class="section mb-3">Basic Information</div>
 			                <label class="pb-4" for="birthday">
 			                    Birthday:

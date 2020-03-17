@@ -65,6 +65,9 @@ public class UserManagement {
 		 user.updateInfos(form.getCity(), form.getJob(), form.getPhone(),
 				form.getAddress(), form.getBirthday(), form.getGender(),
 				form.getDescription(),form.getHobbies(),form.getContact());
+		 System.err.println(form.getHobbies());
+		 System.err.println(form.getBirthday());
+
 	}
 	public Streamable<User> findAll() {
 		return userRepository.findAll();

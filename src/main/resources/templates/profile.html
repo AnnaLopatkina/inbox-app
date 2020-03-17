@@ -72,12 +72,16 @@ c<!DOCTYPE html>
 			
 			        <div class="row no-gutters">
 			            <div class="col-12 col-lg-4 m-3 mt-5">
-			                  <div class="section mb-3">Hobbies</div>
+			                 <!-- <div class="section mb-3">Hobbies</div>
 			                      <div th:each="hobby : ${user.informations.hobbies}" >
 			                      	<div th:text=" ${hobby}" class="pb-2">Branding</div>
-			                      </div>
-			                   
-			                   <div class="section mb-3">Basic Information</div>
+			                      </div> -->
+							<label class="pb-4" for="hobbies">
+								Hobbies:
+								<span th:text="${#strings.capitalize(user.informations.hobbies)}" id="hobbies">Sport</span>
+							</label>
+
+								<div class="section mb-3">Basic Information</div>
 			                <label class="pb-4" for="birthday">
 			                    Birthday:
 			                    <span th:text="${user.informations.birthday}" id="birthday">June 5, 1992</span>
