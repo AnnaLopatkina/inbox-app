@@ -4,6 +4,7 @@ import javax.transaction.Transactional;
 
 import org.salespointframework.useraccount.Password.UnencryptedPassword;
 import org.salespointframework.useraccount.Role;
+import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
@@ -20,8 +21,8 @@ public class UserManagement {
 	}
 	
 	public User addUser(UserForm userForm) {
-		var password = UnencryptedPassword.of(userForm.getPassword());
-		var  account = accounts.create(userForm.getEmail(), password, Role.of("USER") );
+		UnencryptedPassword password = UnencryptedPassword.of(userForm.getPassword());
+		UserAccount  account = accounts.create(userForm.getEmail(), password, Role.of("USER") );
 		
 		User toSave = new User(account , userForm.getName() ,userForm.getFirstname() , userForm.getUsername() , userForm.getEmail());
 		return userRepository.save(toSave) ;

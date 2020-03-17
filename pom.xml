@@ -16,10 +16,10 @@
 	</parent>
 
 	<properties>
-		<java.version>11</java.version>
-		<salespoint.version>7.2.1.RELEASE</salespoint.version>
+	    	<java.version>1.8</java.version>
+			<salespoint.version>7.2.1.RELEASE</salespoint.version>
+		
 	</properties>
-
 	<dependencies>
 		<dependency>
 	   		<groupId>org.postgresql</groupId>
@@ -93,8 +93,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>11</source> 
-					<target>11</target>
+					<source>1.8</source> 
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 			<plugin>
