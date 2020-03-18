@@ -177,9 +177,7 @@ public class UserController {
 			if(str.equals(Hobby.MUSIC.toString())){
 				hobbySet.add(Hobby.MUSIC);
 			}
-
 		}
 		return hobbySet;
 	}
-	
 }
