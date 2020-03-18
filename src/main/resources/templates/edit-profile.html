@@ -39,6 +39,7 @@ c<!DOCTYPE html>
 			            	</form>
 			                
 			            </div>
+
 			            <div class="col-12 col-lg-8 pl-lg-5">
 			                  <div class="mt-2">
 			                      	 <div th:text="${#strings.capitalize(user.firstname)} + ' ' + ${#strings.capitalize(user.name)}" class="name">Jeremy Rose</div>
@@ -46,12 +47,7 @@ c<!DOCTYPE html>
 			                         <div th:text="${#strings.capitalize(user.informations.job)}" class="profession">
 			                         	
 			                  </div>
-			                  <div class="d-flex justify-content-around justify-content-lg-start m-3 ml-lg-0">
-			                          <a class="nav-link text-dark" th:href="@{/edit/profile}">
-			                          	<i class="fa fa-save"></i>
-			                          		Save
-			                          </a>
-			                  </div>
+
 			                  <div class="d-flex justify-content-center justify-content-lg-start position-relative m-3 m-lg-0">
 			                          <ul class="nav nav-tabs" id="myTab" role="tablist">
 			                          	<li class="nav-item">
@@ -63,15 +59,45 @@ c<!DOCTYPE html>
 			                  </div>   
 			            </div>
 			        </div>
-			
+					<form th:action="@{/edit-user/{id}(id=${user.userId})}" method ="post" role="form" id="form" th:object="${form}">
 			        <div class="row no-gutters">
 			            <div class="col-12 col-lg-4 m-3 mt-5">
 			                  <div class="section mb-3">Hobbies</div>
 			                      <div th:each="hobby : ${user.informations.hobbies}" >
 			                      	<div th:text=" ${hobby}" class="pb-2">Branding</div>
 			                      </div>
-			                   
-			                   <div class="section mb-3">Basic Information</div>
+							<a class="primary btn-primary" data-toggle="modal" data-target="#myModal">
+								<i class="fa fa-plus"></i>
+							</a>
+							<div class="modal fade" id="myModal">
+								<div class="modal-dialog modal-dialog-centered">
+									<div class="modal-content">
+
+										<div class="modal-header">
+											<h4 class="modal-title">Users</h4>
+											<button type="button" class="close" data-dismiss="modal">&times;</button>
+										</div>
+
+										<div class="modal-body">
+												<div>
+													<label><input type="checkbox" th:name="idChecked" th:value="SPORT"/>Sport</label>
+													<label><input type="checkbox" th:name="idChecked" th:value="IT"/>IT</label>
+													<label><input type="checkbox" th:name="idChecked" th:value="MUSIC"/>Music</label>
+													<label><input type="checkbox" th:name="idChecked" th:value="DANCING"/>Dancing</label>
+													<label><input type="checkbox" th:name="idChecked" th:value="TRAVELLING"/>Travelling</label>
+													<label><input type="checkbox" th:name="idChecked" th:value="GAME"/>Game</label>
+													<label><input type="checkbox" th:name="idChecked" th:value="READING"/>Reading</label>
+												</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="section mb-3">Basic Information</div>
 			                <label class="pb-4" for="birthday">
 			                    Birthday:
 			                    <span  id="birthday">
@@ -88,7 +114,14 @@ c<!DOCTYPE html>
 			                        </select>
 			                    </span>
 			                </label>
-			
+
+							<div class="d-flex justify-content-around justify-content-lg-start m-3 ml-lg-0">
+								<a onclick="this.closest('form').submit(); return false;" class="nav-link text-dark" th:href="@{/edit/profile}">
+									<i class="fa fa-save"></i>
+									Save
+								</a>
+							</div>
+
 			              </div>
 			              <div class="col-12 col-lg-6 m-3 mt-lg-5">
 			            
@@ -137,7 +170,7 @@ c<!DOCTYPE html>
 					                      Email:
 						                  <span id="email">
 						                      <input type="text" th:value="${user.email}" placeholder="abc@abc.com"
-				                               	name="address" id="address" required>
+				                               	name="email" id="email" required>
 					                      </span>
 					                </label>
 					
@@ -148,7 +181,8 @@ c<!DOCTYPE html>
 			                  </div> 
 			               </div>
                         </div>
-    				</div>
+						</form>
+					</div>
     			</div>
 			</div>	
 		</div>
@@ -161,6 +195,8 @@ c<!DOCTYPE html>
 	<script th:src="@{/resources/vendor/select2/select2.min.js}" src="/resources/vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
 	<script th:src="@{/resources/js/profile.js}" src="js/profile.js"></script>
-	
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	</body>
 </html>

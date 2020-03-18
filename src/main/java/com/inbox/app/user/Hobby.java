@@ -1,5 +1,5 @@
 package com.inbox.app.user;
 
 public enum Hobby {
-	SPORT , MUSIK , IT , READING  , GAME  
+	SPORT , MUSIC , IT , READING  , GAME  , TRAVELLING, DANCING
 }

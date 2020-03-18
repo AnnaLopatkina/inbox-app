@@ -61,7 +61,7 @@ public class User {
 	}
 
 	public void updateInfos(String city , String job , String phone , String address ,String birthday ,
-			Gender gender ,String description  , Set<Hobby> hobbies , Set<Long> contact ) {
+			Gender gender ,String description  , Set<Hobby> hobbies  ) {
 		
 		this.informations.setCity(city);
 		this.informations.setJob(job); 
@@ -70,8 +70,7 @@ public class User {
 		this.informations.setBirthday(birthday);
 		this.informations.setGender(gender);
 		this.informations.setDescription(description);
-		this.informations.setHobbies(hobbies);
-		this.informations.setContact(contact);
+		this.informations.updateHobbies(hobbies);
 		
 	}
 	

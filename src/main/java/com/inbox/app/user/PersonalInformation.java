@@ -129,7 +129,10 @@ public class PersonalInformation {
 	public void setHobbies(Set<Hobby> hobbies) {
 		this.hobbies = hobbies;
 	}
-	
+
+	public void updateHobbies(Set<Hobby> hobbies){
+		this.hobbies.addAll(hobbies);
+	}
 	public Set<Long> getContact() {
 		return contact;
 	}

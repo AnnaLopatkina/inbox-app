@@ -1,7 +1,9 @@
 package com.inbox.app.user;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.inbox.app.controller.Mail;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
@@ -98,8 +101,16 @@ public class UserController {
 		return "edit-profile";
 	}
 
+	@PostMapping("/edit-user/{id}")
+	public String addEditForm(@RequestParam(value="idChecked" , required = false) List<String> hobbies ,
+							  @PathVariable Long id, EditForm form, Model model, Authentication authentication){
+		User user = userManagement.getUserById(id);
+		model.addAttribute("user" , userManagement.getUserById(id));
+		model.addAttribute("authEmail" , authentication.getName());
+		userManagement.editUserInfo(user, form , convertToHobby(hobbies));
+		return "redirect:/profile/" + id;
+	}
 
-	
 	// Soll verifizieren ob den Formular richtig angelegt ist
 	private boolean verifyForm (UserForm form) {
 		// Anja
@@ -140,6 +151,35 @@ public class UserController {
 	        return usersname ;
 	}
 	
-	
+	private Set<Hobby> convertToHobby(List<String> hobbies){
+		System.err.println("hobbies>>> " + hobbies);
+
+		Set<Hobby> hobbySet = new HashSet<>();
+		for(String str: hobbies){
+			if(str.equals(Hobby.IT.toString())){
+				hobbySet.add(Hobby.IT);
+			}
+			if(str.equals(Hobby.SPORT.toString())){
+				hobbySet.add(Hobby.SPORT);
+			}
+			if(str.equals(Hobby.DANCING.toString())){
+				hobbySet.add(Hobby.DANCING);
+			}
+			if(str.equals(Hobby.GAME.toString())){
+				hobbySet.add(Hobby.GAME);
+			}
+			if(str.equals(Hobby.READING.toString())){
+				hobbySet.add(Hobby.READING);
+			}
+			if(str.equals(Hobby.TRAVELLING.toString())){
+				hobbySet.add(Hobby.TRAVELLING);
+			}
+			if(str.equals(Hobby.MUSIC.toString())){
+				hobbySet.add(Hobby.MUSIC);
+			}
+
+		}
+		return hobbySet;
+	}
 	
 }
