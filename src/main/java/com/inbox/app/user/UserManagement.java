@@ -50,11 +50,11 @@ public class UserManagement {
 	public void editUserInfo(User user, EditForm form , Set<Hobby> hobbies){
 		user.setName(form.getName());
 		user.setUsername(form.getUsername());
+
 		user.updateInfos(form.getCity(), form.getJob(), form.getPhone(),
 				form.getAddress(), form.getBirthday(), form.getGender(),
 				form.getDescription(),hobbies);
-		System.err.println(hobbies);
-		System.err.println(form.getBirthday());
+
 
 	}
 

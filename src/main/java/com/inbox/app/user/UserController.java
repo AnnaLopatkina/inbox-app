@@ -111,9 +111,7 @@ public class UserController {
 		return "redirect:/profile/" + id;
 	}
 
-	// Soll verifizieren ob den Formular richtig angelegt ist
 	private boolean verifyForm (UserForm form) {
-		// Anja
 		return form.getPassword().equals(form.getPasswordValid());
 	}
 	
@@ -152,30 +150,33 @@ public class UserController {
 	}
 	
 	private Set<Hobby> convertToHobby(List<String> hobbies){
-		System.err.println("hobbies>>> " + hobbies);
-
+	
 		Set<Hobby> hobbySet = new HashSet<>();
-		for(String str: hobbies){
-			if(str.equals(Hobby.IT.toString())){
-				hobbySet.add(Hobby.IT);
-			}
-			if(str.equals(Hobby.SPORT.toString())){
-				hobbySet.add(Hobby.SPORT);
-			}
-			if(str.equals(Hobby.DANCING.toString())){
-				hobbySet.add(Hobby.DANCING);
-			}
-			if(str.equals(Hobby.GAME.toString())){
-				hobbySet.add(Hobby.GAME);
-			}
-			if(str.equals(Hobby.READING.toString())){
-				hobbySet.add(Hobby.READING);
-			}
-			if(str.equals(Hobby.TRAVELLING.toString())){
-				hobbySet.add(Hobby.TRAVELLING);
-			}
-			if(str.equals(Hobby.MUSIC.toString())){
-				hobbySet.add(Hobby.MUSIC);
+		
+		if(!(hobbies == null)) {
+			
+			for(String str: hobbies){
+				if(str.equals(Hobby.IT.toString())){
+					hobbySet.add(Hobby.IT);
+				}
+				if(str.equals(Hobby.SPORT.toString())){
+					hobbySet.add(Hobby.SPORT);
+				}
+				if(str.equals(Hobby.DANCING.toString())){
+					hobbySet.add(Hobby.DANCING);
+				}
+				if(str.equals(Hobby.GAME.toString())){
+					hobbySet.add(Hobby.GAME);
+				}
+				if(str.equals(Hobby.READING.toString())){
+					hobbySet.add(Hobby.READING);
+				}
+				if(str.equals(Hobby.TRAVELLING.toString())){
+					hobbySet.add(Hobby.TRAVELLING);
+				}
+				if(str.equals(Hobby.MUSIC.toString())){
+					hobbySet.add(Hobby.MUSIC);
+				}
 			}
 		}
 		return hobbySet;

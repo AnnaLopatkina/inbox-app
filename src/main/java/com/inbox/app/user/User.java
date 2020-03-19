@@ -63,14 +63,23 @@ public class User {
 	public void updateInfos(String city , String job , String phone , String address ,String birthday ,
 			Gender gender ,String description  , Set<Hobby> hobbies  ) {
 		
-		this.informations.setCity(city);
-		this.informations.setJob(job); 
-		this.informations.setPhone(phone);
-		this.informations.setAddress(address);
-		this.informations.setBirthday(birthday);
-		this.informations.setGender(gender);
-		this.informations.setDescription(description);
-		this.informations.updateHobbies(hobbies);
+		if(city != null)
+			this.informations.setCity(city);
+		if(job != null)
+			this.informations.setJob(job); 
+		if(phone != null)
+			this.informations.setPhone(phone);
+		if(address != null)
+			this.informations.setAddress(address);
+		if(birthday != null)
+			this.informations.setBirthday(birthday);
+		if(gender != null)
+			this.informations.setGender(gender);
+		if(description != null)
+			this.informations.setDescription(description);
+		
+		if(hobbies != null)
+			this.informations.setHobbies(hobbies);
 		
 	}
 	

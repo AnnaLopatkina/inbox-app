@@ -66,7 +66,7 @@ c<!DOCTYPE html>
 			                      <div th:each="hobby : ${user.informations.hobbies}" >
 			                      	<div th:text=" ${hobby}" class="pb-2">Branding</div>
 			                      </div>
-							<a class="primary btn-primary" data-toggle="modal" data-target="#myModal">
+							<a class="btn btn-primary text-white" data-toggle="modal" data-target="#myModal">
 								<i class="fa fa-plus"></i>
 							</a>
 							<div class="modal fade" id="myModal">
@@ -166,11 +166,18 @@ c<!DOCTYPE html>
 			                               	name="phone" id="phone" required>
 			                              </span>
 					                </label>
-					                <label class="pb-4" for="email">
-					                      Email:
-						                  <span id="email">
-						                      <input type="text" th:value="${user.email}" placeholder="abc@abc.com"
-				                               	name="email" id="email" required>
+					                <label class="pb-4" for="job">
+					                      Job:
+						                  <span id="job">
+						                      <input type="text" th:value="${user.informations.job}" placeholder="Job"
+				                               	name="job" id="job" required>
+					                      </span>
+					                </label>
+					                <label class="pb-4" for="address">
+					                      Address:
+						                  <span id="address">
+						                      <input type="text" th:value="${user.informations.address}" placeholder="Address"
+				                               	name="address" id="address" required>
 					                      </span>
 					                </label>
 					

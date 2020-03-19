@@ -91,7 +91,7 @@ public class PersonalInformation {
 		this.phone = phone;
 	}
 
-	public String getaddress() {
+	public String getAddress() {
 		return address;
 	}
 
