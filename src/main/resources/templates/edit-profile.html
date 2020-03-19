@@ -12,8 +12,6 @@ c<!DOCTYPE html>
 	    <!-- MENU -->
 			<div class="sidebar-menu col-md-3" th:include="menu :: menu" th:with="tempName='profile'"></div>	
 		<!-- /MENU -->
-		
-		
 		<div class="col-9 py-5">
 			<header class="text-center">
 				    <h1 class="display-4 text-white">INBOX - PROFILE</h1>
@@ -72,12 +70,10 @@ c<!DOCTYPE html>
 							<div class="modal fade" id="myModal">
 								<div class="modal-dialog modal-dialog-centered">
 									<div class="modal-content">
-
 										<div class="modal-header">
 											<h4 class="modal-title">Users</h4>
 											<button type="button" class="close" data-dismiss="modal">&times;</button>
 										</div>
-
 										<div class="modal-body">
 												<div>
 													<label><input type="checkbox" th:name="idChecked" th:value="SPORT"/>Sport</label>
@@ -95,8 +91,6 @@ c<!DOCTYPE html>
 									</div>
 								</div>
 							</div>
-
-
 							<div class="section mb-3">Basic Information</div>
 			                <label class="pb-4" for="birthday">
 			                    Birthday:
@@ -180,7 +174,6 @@ c<!DOCTYPE html>
 				                               	name="address" id="address" required>
 					                      </span>
 					                </label>
-					
 					                <div class="section">Description</div>
 					                <textarea class="area"name="description" id="description" 
 					                required th:text="${user.informations.description}" ></textarea>
@@ -193,17 +186,13 @@ c<!DOCTYPE html>
     			</div>
 			</div>	
 		</div>
-<!--===============================================================================================-->	
 	<script th:src="@{/resources/vendor/jquery/jquery-3.2.1.min.js}" src="/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
 	<script th:src="@{/resources/vendor/bootstrap/js/popper.js}" src="/resources/vendor/bootstrap/js/popper.js"></script>
 	<script th:src="@{/resources/vendor/bootstrap/js/bootstrap.min.js}" src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
 	<script th:src="@{/resources/vendor/select2/select2.min.js}" src="/resources/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
 	<script th:src="@{/resources/js/profile.js}" src="js/profile.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	</body>
 </html>
