@@ -20,129 +20,121 @@ import com.inbox.app.controller.Mail;
 
 @Controller
 public class UserController {
-	
+
 	@Autowired
 	//private final SearchUser users;
 	private SessionRegistry sessionRegistry;
-	private List<String> usersname ; 
-	private final Mail mail ;
+	private List<String> usersname;
+	private final Mail mail;
 	private final UserManagement userManagement;
 	private boolean personWithSuchNameNotFound;
-	private Set <User> peopleFound = new HashSet<>();;
+	private Set<User> peopleFound = new HashSet<>();
+	;
 	//private Stream<User> peopleFound;
 	//private Streamable<User> peopleFound;
 	//private Set <User> found;
 	private UserRepository users;
 	private long count;
-	
-	public UserController(UserManagement userManagement , Mail mail, UserRepository searchUser ) {
-		this.users= searchUser;
-		this.userManagement = userManagement ;
-		this.mail = mail ;
-		this.usersname = null ;
+
+	public UserController(UserManagement userManagement, Mail mail, UserRepository searchUser) {
+		this.users = searchUser;
+		this.userManagement = userManagement;
+		this.mail = mail;
+		this.usersname = null;
 		this.personWithSuchNameNotFound = true;
 	}
-	
+
 	@GetMapping("/users")
 	public String showUsers(Model model) {
-		model.addAttribute("users" , userManagement.findAll());
-		usersname = getUsersFromSessionRegistry() ;
-		model.addAttribute("auth" , usersname);
+		model.addAttribute("users", userManagement.findAll());
+		usersname = getUsersFromSessionRegistry();
+		model.addAttribute("auth", usersname);
 		return "users";
 	}
-	
+
 	@GetMapping("/login")
 	public String showLogin() {
 		return "login";
 	}
-	
+
 	@GetMapping("/sign-up")
 	public String showSignup() {
 		return "sign-up";
 	}
-		
+
 	@PostMapping("/sign-up")
-	String getUserForm(UserForm form, Model model){
-		
-		if(verifyForm(form)) {
-			userManagement.addUser(form);	
+	String getUserForm(UserForm form, Model model) {
+
+		if (verifyForm(form)) {
+			userManagement.addUser(form);
 			setTimeout(() -> sendConfirmEmail(form.getEmail()), 200);
 			return "redirect:/login";
-		}
-		else return "redirect:/sign-up";
+		} else return "redirect:/sign-up";
 
 	}
-	
+
 	@GetMapping("/profile/{id}")
-	public String showProfile(@PathVariable Long id , Model model , Authentication authentication) {
-		model.addAttribute("user" , userManagement.getUserById(id));
-		model.addAttribute("authEmail" , authentication.getName());
-		model.addAttribute("userManagement" , userManagement);
+	public String showProfile(@PathVariable Long id, Model model, Authentication authentication) {
+		model.addAttribute("user", userManagement.getUserById(id));
+		model.addAttribute("authEmail", authentication.getName());
+		model.addAttribute("userManagement", userManagement);
 		return "profile";
 	}
-	
+
 	@GetMapping("profile-reload/{id}")
-	public String showProfileReload(@PathVariable Long id){
-		
-		try{
-		    Thread.sleep(2000);
+	public String showProfileReload(@PathVariable Long id) {
+
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException ex) {
+			Thread.currentThread().interrupt();
 		}
-		catch(InterruptedException ex){
-		    Thread.currentThread().interrupt();
-		}
-		
+
 		return "redirect:/profile/" + id;
 	}
-	
+
 	@GetMapping("/user_profile")
 	public String redirectToProfile(Authentication authentication) {
 		Long id = userManagement.getUserByEmail(authentication.getName()).getUserId();
 		return "redirect:/profile/" + id;
 	}
-	
+
 	@GetMapping("edit/profile/{id}")
-	public String showEditProfile(@PathVariable Long id , Model model , Authentication authentication) {
-		
-		if(!userManagement.getUserById(id).getEmail().equals(authentication.getName())) {
+	public String showEditProfile(@PathVariable Long id, Model model, Authentication authentication) {
+
+		if (!userManagement.getUserById(id).getEmail().equals(authentication.getName())) {
 			return "redirect:/users";
 		}
-		model.addAttribute("user" , userManagement.getUserById(id));
-		model.addAttribute("authEmail" , authentication.getName());
+		model.addAttribute("user", userManagement.getUserById(id));
+		model.addAttribute("authEmail", authentication.getName());
 		return "edit-profile";
 	}
 
 	@PostMapping("/edit-user/{id}")
-	public String addEditForm(@RequestParam(value="idChecked" , required = false) List<String> hobbies ,
-							  @PathVariable Long id, EditForm form, Model model, Authentication authentication){
+	public String addEditForm(@RequestParam(value = "idChecked", required = false) List<String> hobbies,
+							  @PathVariable Long id, EditForm form, Model model, Authentication authentication) {
 		User user = userManagement.getUserById(id);
-		model.addAttribute("user" , userManagement.getUserById(id));
-		model.addAttribute("authEmail" , authentication.getName());
-		userManagement.editUserInfo(user, form , convertToHobby(hobbies));
+		model.addAttribute("user", userManagement.getUserById(id));
+		model.addAttribute("authEmail", authentication.getName());
+		userManagement.editUserInfo(user, form, convertToHobby(hobbies));
 		return "redirect:/profile/" + id;
 	}
 
 	@GetMapping("/search")
-	public String search(Model model){
+	public String search(Model model) {
 		model.addAttribute("personNotFound", personWithSuchNameNotFound);
-		model.addAttribute("peopleFound" , peopleFound);
+		model.addAttribute("peopleFound", peopleFound);
+		usersname = getUsersFromSessionRegistry();
+		model.addAttribute("auth", usersname);
 		System.err.println(peopleFound + "who is found");
 		return "search";
 	}
 
-	@GetMapping("/search/name")
-	public String searchName(Model model){
-		model.addAttribute("personNotFound", personWithSuchNameNotFound);
-		model.addAttribute("peopleFound" , peopleFound);
-		//System.out.println(peopleFound + "gggggggg");
-
-		return "search";
-	}
-
 	@RequestMapping("/search/name")
-	String search(@RequestParam("name") String name , Model model) {
+	String search(@RequestParam("name") String name, Model model) {
 		peopleFound.clear();
-		if(!(name == null) && !name.isEmpty()) {
-			//for(String str : name.split(" ") ) {
+		if (!(name == null) && !name.isEmpty()) {
+			for (String str : name.split(" ")) {
 				//peopleFound.addAll(users.findBySuffix(searchTraitement(str)).toList());
 				//peopleFound.addAll(users.findBySuffix(str).toList());
 
@@ -152,17 +144,16 @@ public class UserController {
 				//peopleFound.addAll(users.findByPrefix(searchTraitement(str)).toList());
 				//peopleFound.addAll(users.findByPrefix(str).toList());
 
-			   peopleFound = userManagement.findAll().stream().filter(n -> n.getName().startsWith(name)).collect(Collectors.toSet());
-			   //System.err.println(peopleFound);
-			   //System.err.println(peopleFound.size());
+				peopleFound = userManagement.findAll().stream().filter(n -> n.getName().startsWith(str)).collect(Collectors.toSet());
+				//peopleFound = userManagement.findAll().stream().filter(n -> n.getName().contentEquals(str)).collect(Collectors.toSet());
+			}
 		}
-		if(peopleFound.size() > 0){
-			personWithSuchNameNotFound = false;
+			if (peopleFound.size() > 0) {
+				personWithSuchNameNotFound = false;
+			} else personWithSuchNameNotFound = true;
+			return "redirect:/search";
 		}
-		else personWithSuchNameNotFound = true;
-		//System.out.println(personWithSuchNameNotFound);
-		return "redirect:/search";
-	}
+
 
 	/*private Set <User>  findNameByPrefix(String str){
 		found = new HashSet<>();
