@@ -82,6 +82,14 @@ public class User {
 			this.informations.setHobbies(hobbies);
 		
 	}
+
+	public boolean hasHobby(String hobby) {
+		for (Hobby h : this.informations.getHobbies()) {
+			if (h.toString().equals(hobby))
+				return true;
+		}
+		return false;
+	}
 	
 	public String getUsername() {
 		return username;

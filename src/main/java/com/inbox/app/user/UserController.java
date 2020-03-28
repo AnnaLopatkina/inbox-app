@@ -4,40 +4,50 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Streamable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.inbox.app.controller.Mail;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
 	
 	@Autowired
+	//private final SearchUser users;
 	private SessionRegistry sessionRegistry;
 	private List<String> usersname ; 
 	private final Mail mail ;
 	private final UserManagement userManagement;
+	private boolean personWithSuchNameNotFound;
+	private Set <User> peopleFound = new HashSet<>();;
+	//private Stream<User> peopleFound;
+	//private Streamable<User> peopleFound;
+	//private Set <User> found;
+	private UserRepository users;
+	private long count;
 	
-	public UserController(UserManagement userManagement , Mail mail ) {
+	public UserController(UserManagement userManagement , Mail mail, UserRepository searchUser ) {
+		this.users= searchUser;
 		this.userManagement = userManagement ;
 		this.mail = mail ;
 		this.usersname = null ;
+		this.personWithSuchNameNotFound = true;
 	}
 	
 	@GetMapping("/users")
 	public String showUsers(Model model) {
-		model.addAttribute("users" , userManagement.findAll());	
+		model.addAttribute("users" , userManagement.findAll());
 		usersname = getUsersFromSessionRegistry() ;
-		model.addAttribute("auth" , (usersname != null) ? usersname : null);
+		model.addAttribute("auth" , usersname);
 		return "users";
 	}
 	
@@ -109,6 +119,67 @@ public class UserController {
 		model.addAttribute("authEmail" , authentication.getName());
 		userManagement.editUserInfo(user, form , convertToHobby(hobbies));
 		return "redirect:/profile/" + id;
+	}
+
+	@GetMapping("/search")
+	public String search(Model model){
+		model.addAttribute("personNotFound", personWithSuchNameNotFound);
+		model.addAttribute("peopleFound" , peopleFound);
+		System.err.println(peopleFound + "who is found");
+		return "search";
+	}
+
+	@GetMapping("/search/name")
+	public String searchName(Model model){
+		model.addAttribute("personNotFound", personWithSuchNameNotFound);
+		model.addAttribute("peopleFound" , peopleFound);
+		//System.out.println(peopleFound + "gggggggg");
+
+		return "search";
+	}
+
+	@RequestMapping("/search/name")
+	String search(@RequestParam("name") String name , Model model) {
+		peopleFound.clear();
+		if(!(name == null) && !name.isEmpty()) {
+			//for(String str : name.split(" ") ) {
+				//peopleFound.addAll(users.findBySuffix(searchTraitement(str)).toList());
+				//peopleFound.addAll(users.findBySuffix(str).toList());
+
+				//peopleFound.addAll(users.findByInfix(searchTraitement(str)).toList());
+				//peopleFound.addAll(users.findByInfix(str).toList());
+
+				//peopleFound.addAll(users.findByPrefix(searchTraitement(str)).toList());
+				//peopleFound.addAll(users.findByPrefix(str).toList());
+
+			   peopleFound = userManagement.findAll().stream().filter(n -> n.getName().startsWith(name)).collect(Collectors.toSet());
+			   //System.err.println(peopleFound);
+			   //System.err.println(peopleFound.size());
+		}
+		if(peopleFound.size() > 0){
+			personWithSuchNameNotFound = false;
+		}
+		else personWithSuchNameNotFound = true;
+		//System.out.println(personWithSuchNameNotFound);
+		return "redirect:/search";
+	}
+
+	/*private Set <User>  findNameByPrefix(String str){
+		found = new HashSet<>();
+		for(User u: users.findAll()){
+			if(u.getName().startsWith(str))
+			{
+				found.add(u);
+				//System.err.println(found);
+			}
+		}
+		return found;
+	}*/
+
+	private String searchTraitement(String str) {
+
+		str = str.substring(0,1).toUpperCase() + str.substring(1).toLowerCase();
+		return str ;
 	}
 
 	private boolean verifyForm (UserForm form) {

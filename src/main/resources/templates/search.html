@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inbox</title>
+    <div th:replace="fragments/link :: frameworks"></div>
+    <div th:replace="fragments/link :: search"></div>
+    <div th:replace="fragments/link :: userlist"></div>
+</head>
+<body>
+<div class ="main">
+    <div class="sidebar-menu" th:include="menu :: menu" th:with="tempName='search'"></div>
+    <div class="main-app">
+                <div class="ui container">
+                    <header>
+                        <h1>Search</h1>
+                    </header>
+                    <form class="item" th:action="@{/search/name}" method="post">
+                        <div>
+                            <input type="text" name="name" id="name" class="search"/>
+                            <input type="submit" class="submit-btn" value="Search">
+                        </div>
+                    </form>
+                        <p th:if="${personWithSuchNameNotFound}" class="error">Person with such name is not found</p>
+                    <br><br><br>
+                    <div th:unless="${personWithSuchNameNotFound}" class=class="pr-3">
+                        <div class="pr-3">
+                        <div class="table-wrapper">
+                            <div class="table-title">
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <h2>User <b>Management</b></h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Roles</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="user: ${peopleFound}">
+                                    <td th:text="${user.getEmail()}" >jj</td>>
+                                    <td th:text="${user.getEmail()}" >jj</td>>
+                                    <td th:text="${user.getEmail()}" >jj</td>>
+                                    <td th:text="${user.getEmail()}" >jj</td>>
+                                    <!--<td  th:text="${user.userId}">1</td>
+                                    <td><a th:href="@{/profile/{id}(id=${user.userId})}">
+                                        <img th:src="${'/resources/users_images/' + user.informations.profileImagePath}"
+                                             class="avatar" alt="Avatar">
+                                        <span th:text="${#strings.capitalize(user.firstname)} + '  ' + ${#strings.capitalize(user.name)}">
+                                                             Any und Michael bauen ein Web-App
+                                        </span>
+                                        </a>
+                                    </td>
+                                    <td  th:text="${user.email}">boss@mail.abc</td>
+                                    <td  th:text="${user.roles}">Admin</td>
+                                    <td th:if="${auth.contains(user.email)}"><span class="status text-success">&bull;</span>
+                                        <span class="stat"> Online</span>
+                                    </td>
+                                    <td th:if="${!auth.contains(user.email)}"><span class="status text-danger">&bull;</span>
+                                        <span class="stat"> Offline</span>
+                                    </td>
+
+                                    <td>
+                                        <a th:href="@{/profile/{id}(id=${user.userId})}" class="settings" title="Settings" data-toggle="tooltip"><i class="fa fa-cog"></i></a>
+                                        <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="fa fa-times-circle"></i></a>
+                                    </td>
+                                     /////////////////
+                                     <tr th:each="student: ${students}">
+                                        <td th:text="${student.id}" />
+                                        <td th:text="${student.name}" />
+                                    </tr>
+                                     -->
+
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <div class="clearfix">
+                                <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                                <ul class="pagination">
+                                    <li class="page-item disabled"><a href="#">Previous</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">1</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">2</a></li>
+                                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">4</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">5</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+<!--===============================================================================================-->
+<script th:src="@{/resources/vendor/jquery/jquery-3.2.1.min.js}" src="/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+<script th:src="@{/resources/js/chat.js}" src="/resources/js/chat.js"></script>
+<script th:src="@{/resources/vendor/bootstrap/js/popper.js}" src="/resources/vendor/bootstrap/js/popper.js"></script>
+<script th:src="@{/resources/vendor/bootstrap/js/bootstrap.min.js}" src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script th:src="@{/resources/vendor/bootstrap/js/bootstrap.bundle.min.js}" src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

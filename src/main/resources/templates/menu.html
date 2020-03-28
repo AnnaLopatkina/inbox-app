@@ -18,10 +18,13 @@
 		                <li th:classappend="${tempName.equals('chat')} ? active : no ">
 		                	<a th:href="@{/chat}" href="#"><i class="fa fa-commenting fa-lg"></i> Chat</a>
 		                </li>
+						<li th:classappend="${tempName.equals('search')} ? active : no ">
+							<a th:href="@{/search}" href="#"><i class="fa fa-users"></i>Search</a>
+						</li>
 		                <li data-toggle="collapse" data-target="#service" class="collapsed" 
 		                	th:classappend="${tempName.equals('userlist') or tempName.equals('groupcreation')} ? active : no ">
 		                	<a href="#"><i class="fa fa-globe fa-lg"></i> Users Administration <span class="arrow"></span></a>
-		                </li>  
+		                </li>
 		                <ul class="sub-menu collapse" id="service">
 		                   	<li th:classappend="${tempName.equals('userlist')} ? active : no ">
 		                  		<a th:href="@{/users}" href="#"><i class="fa fa-users fa-lg"></i> Users</a>
@@ -29,7 +32,7 @@
 		                	<li th:classappend="${tempName.equals('groupcreation')} ? active : no ">
 		                  		<a th:href="@{/create-group}" href="#"><i class="fa fa-users fa-lg"></i> Create group</a>
 		                	</li>
-		                </ul>			
+		                </ul>
 		                <li  th:classappend="${tempName.equals('profile')} ? active : no">
 		                	<a th:href="@{/user_profile}" ><i class="fa fa-user fa-lg"></i> Profile</a>
 		                </li>
