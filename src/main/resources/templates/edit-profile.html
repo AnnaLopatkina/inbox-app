@@ -76,13 +76,13 @@ c<!DOCTYPE html>
 										</div>
 										<div class="modal-body">
 												<div>
-													<label><input type="checkbox" th:name="idChecked" th:value="SPORT"/>Sport</label>
-													<label><input type="checkbox" th:name="idChecked" th:value="IT"/>IT</label>
-													<label><input type="checkbox" th:name="idChecked" th:value="MUSIC"/>Music</label>
-													<label><input type="checkbox" th:name="idChecked" th:value="DANCING"/>Dancing</label>
-													<label><input type="checkbox" th:name="idChecked" th:value="TRAVELLING"/>Travelling</label>
-													<label><input type="checkbox" th:name="idChecked" th:value="GAME"/>Game</label>
-													<label><input type="checkbox" th:name="idChecked" th:value="READING"/>Reading</label>
+													<label><input type="checkbox" th:name="idChecked" th:value="SPORT" th:checked="${user.hasHobby('SPORT')}"/>Sport</label>
+													<label><input type="checkbox" th:name="idChecked" th:value="IT" th:checked="${user.hasHobby('IT')}"/>IT</label>
+													<label><input type="checkbox" th:name="idChecked" th:value="MUSIC" th:checked="${user.hasHobby('MUSIC')}"/>Music</label>
+													<label><input type="checkbox" th:name="idChecked" th:value="DANCING" th:checked="${user.hasHobby('DANCING')}" />Dancing</label>
+													<label><input type="checkbox" th:name="idChecked" th:value="TRAVELLING" th:checked="${user.hasHobby('TRAVELLING')}"/>Travelling</label>
+													<label><input type="checkbox" th:name="idChecked" th:value="GAME" th:checked="${user.hasHobby('GAME')}"/>Game</label>
+													<label><input type="checkbox" th:name="idChecked" th:value="READING" th:checked="${user.hasHobby('READING')}"/>Reading</label>
 												</div>
 										</div>
 										<div class="modal-footer">
@@ -108,15 +108,14 @@ c<!DOCTYPE html>
 			                        </select>
 			                    </span>
 			                </label>
-
+			                
 							<div class="d-flex justify-content-around justify-content-lg-start m-3 ml-lg-0">
-								<a onclick="this.closest('form').submit(); return false;" class="nav-link text-dark" th:href="@{/edit/profile}">
+								<a onclick="this.closest('form').submit(); return false;" class="btn btn-primary text-white nav-link" href="/edit/profile">
 									<i class="fa fa-save"></i>
-									Save
 								</a>
 							</div>
-
 			              </div>
+			              
 			              <div class="col-12 col-lg-6 m-3 mt-lg-5">
 			            
 			                  <div class="tab-content" id="myTabContent">

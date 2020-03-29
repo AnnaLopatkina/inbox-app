@@ -173,6 +173,13 @@ public class User {
 	}
 
 	
+	public boolean hasHobby(String hobby) {
+		for(Hobby h : this.informations.getHobbies()) {
+			if (h.toString().equals(hobby))
+				return true;
+		}
+		return false;
+	}
 	public String toString() {
 		String str ="";
 		str = "Name: "+this.getName() + "--  Firstname: "+this.getFirstname()+ "-- Username: "+this.getUsername() 
