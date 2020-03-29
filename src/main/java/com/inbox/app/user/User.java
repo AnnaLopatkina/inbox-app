@@ -15,6 +15,7 @@ import javax.persistence.OneToOne;
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountIdentifier;
+import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 public class User {
@@ -66,7 +67,7 @@ public class User {
 		if(city != null)
 			this.informations.setCity(city);
 		if(job != null)
-			this.informations.setJob(job); 
+			this.informations.setJob(job);
 		if(phone != null)
 			this.informations.setPhone(phone);
 		if(address != null)
@@ -175,7 +176,7 @@ public class User {
 	public String toString() {
 		String str ="";
 		str = "Name: "+this.getName() + "--  Firstname: "+this.getFirstname()+ "-- Username: "+this.getUsername() 
-			+"-- Email: "+this.getEmail() ;
+			+"-- Email: "+this.getEmail() ;//+ "-- Hobbies: "+ this.informations.getHobbies().toString() ;
 		return str ;
 	}
 }

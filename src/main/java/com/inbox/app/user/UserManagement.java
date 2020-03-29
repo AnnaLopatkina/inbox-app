@@ -53,7 +53,7 @@ public class UserManagement {
 
 		user.updateInfos(form.getCity(), form.getJob(), form.getPhone(),
 				form.getAddress(), form.getBirthday(), form.getGender(),
-				form.getDescription(),hobbies);
+				form.getDescription(), hobbies);
 
 
 	}

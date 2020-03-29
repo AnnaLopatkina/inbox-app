@@ -22,9 +22,9 @@
                             <input type="submit" class="submit-btn" value="Search">
                         </div>
                     </form>
-                        <p th:if="${personWithSuchNameNotFound}" class="error">Person with such name is not found</p>
+                        <p th:if="${personNotFound}" class="error">Person with such name is not found</p>
                     <br><br><br>
-                    <div th:unless="${personWithSuchNameNotFound}" class=class="pr-3">
+                    <div th:if="${!personNotFound}" class=class="pr-3">
                         <div class="pr-3">
                         <div class="table-wrapper">
                             <div class="table-title">
@@ -40,17 +40,13 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Roles</th>
+                                    <th>Hobby</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="user: ${peopleFound}">
-                                   <!-- <td th:text="${user.getEmail()}" >jj</td>>
-                                    <td th:text="${user.getEmail()}" >jj</td>>
-                                    <td th:text="${user.getEmail()}" >jj</td>>
-                                    <td th:text="${user.getEmail()}" >jj</td>> -->
                                     <td  th:text="${user.userId}">1</td>
                                     <td><a th:href="@{/profile/{id}(id=${user.userId})}">
                                         <img th:src="${'/resources/users_images/' + user.informations.profileImagePath}"
@@ -61,7 +57,11 @@
                                         </a>
                                     </td>
                                     <td  th:text="${user.email}">boss@mail.abc</td>
-                                    <td  th:text="${user.roles}">Admin</td>
+                                    <td>
+                                             <p th:each="hobby : ${user.informations.hobbies}" >
+                                                 <span th:text=" ${hobby}" class="pb-2">Branding</span>
+                                             </p>
+                                    </td>
                                     <td th:if="${auth.contains(user.email)}"><span class="status text-success">&bull;</span>
                                         <span class="stat"> Online</span>
                                     </td>
@@ -74,14 +74,7 @@
                                         <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="fa fa-times-circle"></i></a>
                                     </td>
 
-                                  <!--   <tr th:each="student: ${students}">
-                                        <td th:text="${student.id}" />
-                                        <td th:text="${student.name}" />
-                                    </tr> -->
-
-
                                 </tr>
-
                                 </tbody>
                             </table>
                             <div class="clearfix">

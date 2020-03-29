@@ -26,12 +26,12 @@ public class UserController {
 	private final UserManagement userManagement;
 	private boolean personWithSuchNameNotFound;
 	private Set<User> peopleFound = new HashSet<>();
-	//private Set<User> found = new HashSet<>();
+	private PersonalInformation info;
+	private List<String> findHobby = new ArrayList<>();
 	private UserRepository users;
+	//private List<String> qqq= new ArrayList<>();
 
-
-	public UserController(UserManagement userManagement, Mail mail, UserRepository searchUser) {
-		this.users = searchUser;
+	public UserController(UserManagement userManagement, Mail mail) {
 		this.userManagement = userManagement;
 		this.mail = mail;
 		this.usersname = null;
@@ -118,31 +118,16 @@ public class UserController {
 	public String search(Model model) {
 		model.addAttribute("personNotFound", personWithSuchNameNotFound);
 		model.addAttribute("peopleFound", peopleFound);
+
+
 		usersname = getUsersFromSessionRegistry();
 		model.addAttribute("auth", usersname);
-		System.err.println(peopleFound + "who is found");
 		return "search";
 	}
 
 	@RequestMapping("/search/name")
 	String search(@RequestParam("name") String name, Model model) {
-		peopleFound.clear();
-		if (!(name == null) && !name.isEmpty()) {
-			for (String str : name.split(" ")) {
-				peopleFound.addAll(userManagement.findAll().stream().filter(n -> (n.getFirstname()).contains(str)).collect(Collectors.toSet()));
-				peopleFound.addAll(userManagement.findAll().stream().filter(n -> (n.getFirstname()).contains(str.toLowerCase())).collect(Collectors.toSet()));
-				peopleFound.addAll(userManagement.findAll().stream().filter(n -> (n.getFirstname()).contains(str.toUpperCase())).collect(Collectors.toSet()));
-				peopleFound.addAll(userManagement.findAll().stream().filter(n -> n.getName().contains(str)).collect(Collectors.toSet()));
-				peopleFound.addAll(userManagement.findAll().stream().filter(n -> n.getName().contains(str.toLowerCase())).collect(Collectors.toSet()));
-				peopleFound.addAll(userManagement.findAll().stream().filter(n -> n.getName().contains(str.toUpperCase())).collect(Collectors.toSet()));
-				peopleFound.addAll(userManagement.findAll().stream().filter(n -> n.getUsername().contains(str)).collect(Collectors.toSet()));
-				peopleFound.addAll(userManagement.findAll().stream().filter(n -> n.getUsername().contains(str.toLowerCase())).collect(Collectors.toSet()));
-				peopleFound.addAll(userManagement.findAll().stream().filter(n -> n.getUsername().contains(str.toUpperCase())).collect(Collectors.toSet()));
-			}
-		}
-			if (peopleFound.size() > 0) {
-				personWithSuchNameNotFound = false;
-			} else personWithSuchNameNotFound = true;
+		searchUser(name);
 			return "redirect:/search";
 		}
 
@@ -215,5 +200,25 @@ public class UserController {
 			}
 		}
 		return hobbySet;
+	}
+
+	private Set<User> searchUser(String name){
+		peopleFound.clear();
+		if (!(name == null) && !name.isEmpty()) {
+			for (String str : name.split(" ")) {
+				peopleFound.addAll(userManagement.findAll().stream().filter(n -> (n.getFirstname()).contains(str)).collect(Collectors.toSet()));
+				peopleFound.addAll(userManagement.findAll().stream().filter(n -> (n.getFirstname()).contains(str.toLowerCase())).collect(Collectors.toSet()));
+				peopleFound.addAll(userManagement.findAll().stream().filter(n -> (n.getFirstname()).contains(str.toUpperCase())).collect(Collectors.toSet()));
+				peopleFound.addAll(userManagement.findAll().stream().filter(n -> n.getName().contains(str)).collect(Collectors.toSet()));
+				peopleFound.addAll(userManagement.findAll().stream().filter(n -> n.getName().contains(str.toLowerCase())).collect(Collectors.toSet()));
+				peopleFound.addAll(userManagement.findAll().stream().filter(n -> n.getName().contains(str.toUpperCase())).collect(Collectors.toSet()));
+				peopleFound.addAll(userManagement.findAll().stream().filter(n -> n.getUsername().contains(str)).collect(Collectors.toSet()));
+				peopleFound.addAll(userManagement.findAll().stream().filter(n -> n.getUsername().contains(str.toLowerCase())).collect(Collectors.toSet()));
+				peopleFound.addAll(userManagement.findAll().stream().filter(n -> n.getUsername().contains(str.toUpperCase())).collect(Collectors.toSet()));
+				peopleFound.addAll(userManagement.findAll().stream().filter(n -> n.getInformations().getHobbies().toString().contains(str.toUpperCase())).collect(Collectors.toSet()));
+			}
+			personWithSuchNameNotFound = peopleFound.size() <= 0;
+		}
+		return peopleFound;
 	}
 }

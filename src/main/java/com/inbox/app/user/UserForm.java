@@ -8,6 +8,7 @@ public class UserForm {
 	private final String password;
 	private final String passwordValid;
 	private final String email;
+
 	
 	public UserForm(String name , String firstname , String username , String password , String passwordValid , String email){
 		this.name = name ;

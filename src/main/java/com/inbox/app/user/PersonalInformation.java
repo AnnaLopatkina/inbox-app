@@ -1,5 +1,7 @@
 package com.inbox.app.user;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -45,7 +47,7 @@ public class PersonalInformation {
 	}
 	
 	PersonalInformation(String city , String job , String phone , String address ,String birthday ,
-						Gender gender ,String description ){
+						Gender gender ,String description){
 		this.city = city ;
 		this.job = job ; 
 		this.phone = phone ;
@@ -53,6 +55,7 @@ public class PersonalInformation {
 		this.birthday = birthday ;
 		this.gender = gender ;
 		this.description = description ;
+		//this.hobbies= hobbies;
 		this.hobbies = new HashSet<>();
 		this.contact = new HashSet<>();
 		this.profileImagePath = "profile-1.png";
@@ -145,7 +148,8 @@ public class PersonalInformation {
 		String str = "" ; 
 		
 		str = "city: " + this.city + ", job: " + this.job + ", phone: "+this.phone+ ", address: "+this.address+", birthday: "+this.birthday +
-		", gender: "+this.gender+", description: "+this.description;
+		", gender: "+this.gender+", description: "+this.description + ", hobbies: " + this.getHobbies();
+		System.err.println(str);
 		return str ;
 	}
 }
