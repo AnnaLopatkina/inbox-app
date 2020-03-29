@@ -84,14 +84,6 @@ public class User {
 		
 	}
 
-	public boolean hasHobby(String hobby) {
-		for (Hobby h : this.informations.getHobbies()) {
-			if (h.toString().equals(hobby))
-				return true;
-		}
-		return false;
-	}
-	
 	public String getUsername() {
 		return username;
 	}
@@ -183,7 +175,7 @@ public class User {
 	public String toString() {
 		String str ="";
 		str = "Name: "+this.getName() + "--  Firstname: "+this.getFirstname()+ "-- Username: "+this.getUsername() 
-			+"-- Email: "+this.getEmail() ;//+ "-- Hobbies: "+ this.informations.getHobbies().toString() ;
+			+"-- Email: "+this.getEmail() ;
 		return str ;
 	}
 }
