@@ -5,10 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.util.Streamable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,19 +20,15 @@ import com.inbox.app.controller.Mail;
 public class UserController {
 
 	@Autowired
-	//private final SearchUser users;
 	private SessionRegistry sessionRegistry;
 	private List<String> usersname;
 	private final Mail mail;
 	private final UserManagement userManagement;
 	private boolean personWithSuchNameNotFound;
 	private Set<User> peopleFound = new HashSet<>();
-	;
-	//private Stream<User> peopleFound;
-	//private Streamable<User> peopleFound;
-	//private Set <User> found;
+	//private Set<User> found = new HashSet<>();
 	private UserRepository users;
-	private long count;
+
 
 	public UserController(UserManagement userManagement, Mail mail, UserRepository searchUser) {
 		this.users = searchUser;
@@ -135,17 +129,15 @@ public class UserController {
 		peopleFound.clear();
 		if (!(name == null) && !name.isEmpty()) {
 			for (String str : name.split(" ")) {
-				//peopleFound.addAll(users.findBySuffix(searchTraitement(str)).toList());
-				//peopleFound.addAll(users.findBySuffix(str).toList());
-
-				//peopleFound.addAll(users.findByInfix(searchTraitement(str)).toList());
-				//peopleFound.addAll(users.findByInfix(str).toList());
-
-				//peopleFound.addAll(users.findByPrefix(searchTraitement(str)).toList());
-				//peopleFound.addAll(users.findByPrefix(str).toList());
-
-				peopleFound = userManagement.findAll().stream().filter(n -> n.getName().startsWith(str)).collect(Collectors.toSet());
-				//peopleFound = userManagement.findAll().stream().filter(n -> n.getName().contentEquals(str)).collect(Collectors.toSet());
+				peopleFound.addAll(userManagement.findAll().stream().filter(n -> (n.getFirstname()).contains(str)).collect(Collectors.toSet()));
+				peopleFound.addAll(userManagement.findAll().stream().filter(n -> (n.getFirstname()).contains(str.toLowerCase())).collect(Collectors.toSet()));
+				peopleFound.addAll(userManagement.findAll().stream().filter(n -> (n.getFirstname()).contains(str.toUpperCase())).collect(Collectors.toSet()));
+				peopleFound.addAll(userManagement.findAll().stream().filter(n -> n.getName().contains(str)).collect(Collectors.toSet()));
+				peopleFound.addAll(userManagement.findAll().stream().filter(n -> n.getName().contains(str.toLowerCase())).collect(Collectors.toSet()));
+				peopleFound.addAll(userManagement.findAll().stream().filter(n -> n.getName().contains(str.toUpperCase())).collect(Collectors.toSet()));
+				peopleFound.addAll(userManagement.findAll().stream().filter(n -> n.getUsername().contains(str)).collect(Collectors.toSet()));
+				peopleFound.addAll(userManagement.findAll().stream().filter(n -> n.getUsername().contains(str.toLowerCase())).collect(Collectors.toSet()));
+				peopleFound.addAll(userManagement.findAll().stream().filter(n -> n.getUsername().contains(str.toUpperCase())).collect(Collectors.toSet()));
 			}
 		}
 			if (peopleFound.size() > 0) {
@@ -153,25 +145,6 @@ public class UserController {
 			} else personWithSuchNameNotFound = true;
 			return "redirect:/search";
 		}
-
-
-	/*private Set <User>  findNameByPrefix(String str){
-		found = new HashSet<>();
-		for(User u: users.findAll()){
-			if(u.getName().startsWith(str))
-			{
-				found.add(u);
-				//System.err.println(found);
-			}
-		}
-		return found;
-	}*/
-
-	private String searchTraitement(String str) {
-
-		str = str.substring(0,1).toUpperCase() + str.substring(1).toLowerCase();
-		return str ;
-	}
 
 	private boolean verifyForm (UserForm form) {
 		return form.getPassword().equals(form.getPasswordValid());
